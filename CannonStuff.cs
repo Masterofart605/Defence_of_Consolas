@@ -1,12 +1,12 @@
-using static cannon.Parts;
+using static cannon.Modes;
 using static cannon.Text;
 
 
 namespace cannon
 {
-    public class Parts
+    public class Modes
     {
-        public static int theMagicCannon(int cannonTurn, int level, cannonElement element, cannonLocation location)
+        public static int MagicCannon(int cannonTurn, int level, cannonElement element, cannonLocation location)
         {
             Console.Write($"The Cannon at {location} Station has a ");//basic charge...
             if (level == 1)
@@ -438,6 +438,28 @@ namespace cannon
             Console.ForegroundColor = color;
             Console.Write(text);
             Console.ForegroundColor = ConsoleColor.White;
+        }
+     }
+     public class Other{
+        public static int Targeting(int target, cannonLocation id, bool changeTarget, bool hasCannon){
+            if (hasCannon == false){
+                //If the Player does not have this cannon yet just end
+                return 0;
+            }
+            if (changeTarget ==  false){
+                if (target <= 0){
+                    Console.Write($"The cannon at the {id} station has no target \n");
+                }else{
+                    Console.Write($"The cannon at the {id} station is targeting {target}");
+                }
+            }
+
+            if (changeTarget == true){
+                
+            }
+
+
+            return 0;
         }
      }
     
