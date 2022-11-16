@@ -1,0 +1,10 @@
+11/15/22
+Implemented haveing multiple cannons able to target seperatly
+made The Manticore spawn on a 100,100 cordanite centerd on zero
+cannons now also targent on that cordanite plain
+added the radar to make findeing The Manticore slightly easier
+Buffed city hp from 15 to 25
+fixed you win screen changeing Concolas to Consolas
+added visual indicators showing which side of The Manticore that them missed on
+Added advanced health veiw settings
+Added placeholder values for advanced hp

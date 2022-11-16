@@ -441,13 +441,15 @@ namespace cannon
         }
      }
      public class Other{
-        public static int Targeting(int target, cannonLocation id, bool changeTarget, bool hasCannon){
+        public static (int,int) Targeting((int,int) target, cannonLocation id, bool changeTarget, bool hasCannon){
+            (int,int) newTarget;
             if (hasCannon == false){
                 //If the Player does not have this cannon yet just end
-                return 0;
+                Console.Write("You do not have this cannon yet \n");
+                return (0,0);
             }
             if (changeTarget ==  false){
-                if (target <= 0){
+                if (target.Item1 <= -51 && target.Item2 <= -51){
                     Console.Write($"The cannon at the {id} station has no target \n");
                 }else{
                     Console.Write($"The cannon at the {id} station is targeting {target}");
@@ -455,11 +457,26 @@ namespace cannon
             }
 
             if (changeTarget == true){
-                
+                while(true){
+                    try{
+                        Console.Write("What is the X cordanate you want to target?\n");
+                        newTarget.Item1 = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("What is the Y cordanate you want to target?\n");
+                        newTarget.Item2 = Convert.ToInt32(Console.ReadLine());
+                        Console.Write($"You are Now Targeting {newTarget}\n");
+                        if((newTarget.Item1 > 50 || newTarget.Item1 > 50) || (newTarget.Item1 < -50 || newTarget.Item2 < -50)){
+                            Console.Write("One of your numbers is larger that 50 or smaller than -50 please try again\n");
+                        }else{
+                            return newTarget;
+                        }
+                    }catch (FormatException){
+                        Console.Write("Please input a number \n");
+                    }
+                }
             }
 
 
-            return 0;
+            return (0,0);
         }
      }
     
