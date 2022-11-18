@@ -8,3 +8,25 @@ fixed you win screen changeing Concolas to Consolas
 added visual indicators showing which side of The Manticore that them missed on
 Added advanced health veiw settings
 Added placeholder values for advanced hp
+
+11/17/22
+
+Goal1: Make The Advanced HP actually work rather than useing placeholders
+Goal2: When a cannon hits or misses show which cannon it was
+Goal3: Continure to improve cannon interface
+
+The Manticore now fires at a random all part, prioritizeing the outer walls
+All city parts hp now adds together for cityHp
+Changed back wall to secondary wall
+Advanced HP Now shows cannon tower hp
+Fixed Error where secondary wall could go into negatives
+Fixed error where cannons displayed city center hp instead of their own
+Fixed error where cannon hp would stay green as it took damamge
+Cannons can no longer fire when their hp runs out.
+Goal1 complete
+Changed cannon text so that miss to left/right and overshot/fellshort are on the same line
+Changed "Your round" into "{cannon's round}" hit or missed the target
+Goal2 complete
+All active cannons will now show what charge they have
+fixed error where a cannon could target above y = 50
+Now shows when x and y are too big or too small rather than useing a blanket statment

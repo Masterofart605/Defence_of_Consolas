@@ -431,7 +431,7 @@ namespace cannon
             return 0;
         }
         public enum cannonElement {Fire, Ice, Criogenic, Blaze}
-        public enum cannonLocation {Left, Center, Right, Upper}
+        public enum cannonLocation {Left, Center, Right, Upper, Super}
     }
     public class Text{
         static public void changeColor(string text, ConsoleColor color){
@@ -464,9 +464,15 @@ namespace cannon
                         Console.Write("What is the Y cordanate you want to target?\n");
                         newTarget.Item2 = Convert.ToInt32(Console.ReadLine());
                         Console.Write($"You are Now Targeting {newTarget}\n");
-                        if((newTarget.Item1 > 50 || newTarget.Item1 > 50) || (newTarget.Item1 < -50 || newTarget.Item2 < -50)){
-                            Console.Write("One of your numbers is larger that 50 or smaller than -50 please try again\n");
-                        }else{
+                        if(newTarget.Item1 > 50){
+                            Console.Write("Your X is too big, please try again\n");
+                        }else if (newTarget.Item1 < -50){
+                            Console.Write("Your X is too Small, please try again\n");
+                        }else if(newTarget.Item2 > 50){
+                            Console.Write("Your Y is too big, please try again\n");
+                        }else if (newTarget.Item2 < -50){
+                            Console.Write("Your Y is too Small, please try again\n");
+                        } else{
                             return newTarget;
                         }
                     }catch (FormatException){
