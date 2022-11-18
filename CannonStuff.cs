@@ -6,7 +6,7 @@ namespace cannon
 {
     public class Modes
     {
-        public static int MagicCannon(int cannonTurn, int level, cannonElement element, cannonLocation location)
+        public static int MagicCannon(int cannonTurn, int level, MagicCannonElement element, cannonLocation location)
         {
             Console.Write($"The Cannon at {location} Station has a ");//basic charge...
             if (level == 1)
@@ -20,14 +20,14 @@ namespace cannon
                 if (cannonTurn % 3 == 0)
                 {
                     //Fire Charge
-                    if (element == cannonElement.Fire)
+                    if (element == MagicCannonElement.Fire)
                     {
                         changeColor("Fire",ConsoleColor.Red);
                         Console.Write($" Charge. \n");
                         return 3;
                         //Ice charge
                     }
-                    else if (element == cannonElement.Ice)
+                    else if (element == MagicCannonElement.Ice)
                     {
                         changeColor("Frost",ConsoleColor.Cyan);
                         Console.Write($" Charge. \n");
@@ -46,7 +46,7 @@ namespace cannon
                 if (cannonTurn % 3 == 0 && cannonTurn % 5 == 0)
                 {
                     //Double Charge Fire
-                    if (element == cannonElement.Fire)
+                    if (element == MagicCannonElement.Fire)
                     {
                         changeColor("Flash",ConsoleColor.Yellow);
                         Console.Write("-");
@@ -74,7 +74,7 @@ namespace cannon
                 else if (cannonTurn % 3 == 0)
                 {
                     //Fire charge
-                    if (element == cannonElement.Fire)
+                    if (element == MagicCannonElement.Fire)
                     {
                         changeColor("Fire",ConsoleColor.Red);
                         Console.Write($" Charge. \n");
@@ -108,7 +108,7 @@ namespace cannon
                         if (cannonTurn % 3 == 0)
                         {
                             //fire/ice
-                            if (element == cannonElement.Fire)
+                            if (element == MagicCannonElement.Fire)
                             {
                                 //Hyrdo, Thunder, Fire
                                 changeColor("Fire ",ConsoleColor.Red);
@@ -116,7 +116,7 @@ namespace cannon
                                 Console.Write($" charge. \n");
                                 return 150;
                             }
-                            if (element == cannonElement.Ice)
+                            if (element == MagicCannonElement.Ice)
                             {
                                 //Hyrdo, Thunder, Ice
                                 changeColor("Snow",ConsoleColor.Cyan);
@@ -134,14 +134,14 @@ namespace cannon
                     if (cannonTurn % 3 == 0)
                     {
                         //Thunder Fire Charge
-                        if (element == cannonElement.Fire)
+                        if (element == MagicCannonElement.Fire)
                         {
                             changeColor("Steam",ConsoleColor.DarkRed);
                             Console.Write($" charge. \n");
                             return 30;
                         }
                         //Thunder Ice Charge
-                        if (element == cannonElement.Ice)
+                        if (element == MagicCannonElement.Ice)
                         {
                             changeColor("Glacier",ConsoleColor.DarkCyan);
                             Console.Write($" charge. \n");
@@ -159,14 +159,14 @@ namespace cannon
                     if (cannonTurn % 3 == 0)
                     {
                         //Double Fire charge
-                        if (element == cannonElement.Fire)
+                        if (element == MagicCannonElement.Fire)
                         {
                             changeColor("Flash",ConsoleColor.Yellow);
                             Console.Write("-");
                             changeColor("Burn",ConsoleColor.Red);
                             Console.Write($" charge. \n");
                         }
-                        if (element == cannonElement.Ice)
+                        if (element == MagicCannonElement.Ice)
                         {
                             //Double Charge Ice
                             changeColor("Flash",ConsoleColor.Yellow);
@@ -185,14 +185,14 @@ namespace cannon
                 if (cannonTurn % 3 == 0)
                 {
                     //Fire Charge
-                    if (element == cannonElement.Fire)
+                    if (element == MagicCannonElement.Fire)
                     {
                         changeColor("Fire",ConsoleColor.Red);
                         Console.Write($" Charge. \n");
                         return 3;
                         //Ice charge
                     }
-                    else if (element == cannonElement.Ice)
+                    else if (element == MagicCannonElement.Ice)
                     {
                         changeColor("Frost",ConsoleColor.Cyan);
                         Console.Write($" Charge. \n");
@@ -231,14 +231,14 @@ namespace cannon
                                 Console.Write(". \n");
                                 return 10000;
                             }
-                            if (element == cannonElement.Ice)
+                            if (element == MagicCannonElement.Ice)
                             {
                                 changeColor("Fire",ConsoleColor.Red);
                                 changeColor(" Storm",ConsoleColor.Yellow);
                                 Console.Write($" + charge. \n");
                                 return 750;
                             }
-                            if (element == cannonElement.Fire)
+                            if (element == MagicCannonElement.Fire)
                             {
                                 changeColor("Snow",ConsoleColor.Cyan);
                                 changeColor(" Storm",ConsoleColor.Yellow);
@@ -255,13 +255,13 @@ namespace cannon
                             return 450;
                         }
                         //Crio-Hydro
-                        if (element == cannonElement.Fire)
+                        if (element == MagicCannonElement.Fire)
                         {
                             changeColor("Glacier",ConsoleColor.DarkCyan);
                             Console.Write($" + charge. \n");
                         }
                         //Blaze-Hydro
-                        if (element == cannonElement.Ice)
+                        if (element == MagicCannonElement.Ice)
                         {
                             changeColor("Steam",ConsoleColor.DarkRed);
                             Console.Write($" + charge. \n");
@@ -280,7 +280,7 @@ namespace cannon
                             return 225;
                         }
                         //Blaze thunder
-                        if (element == cannonElement.Ice)
+                        if (element == MagicCannonElement.Ice)
                         {
                             changeColor("Flash",ConsoleColor.Yellow);
                             Console.Write("-");
@@ -288,7 +288,7 @@ namespace cannon
                             Console.Write($" + charge. \n");
                         }
                         //crio thunder
-                        if (element == cannonElement.Fire)
+                        if (element == MagicCannonElement.Fire)
                         {
                             changeColor("Flash",ConsoleColor.Yellow);
                             Console.Write("-");
@@ -309,14 +309,14 @@ namespace cannon
                     }
 
                     //Crio Charge
-                    if (element == cannonElement.Fire)
+                    if (element == MagicCannonElement.Fire)
                     {
                         changeColor("Criogenic",ConsoleColor.DarkCyan);
                         Console.Write($" charge. \n");
                         return 15;
                     }
                     //Blaze Charge
-                    if (element == cannonElement.Ice)
+                    if (element == MagicCannonElement.Ice)
                     {
                         changeColor("Blaze",ConsoleColor.DarkRed);
                         Console.Write($" charge. \n");
@@ -333,7 +333,7 @@ namespace cannon
                         if (cannonTurn % 3 == 0)
                         {
                             //fire/ice
-                            if (element == cannonElement.Fire)
+                            if (element == MagicCannonElement.Fire)
                             {
                                 //Hyrdo, Thunder, Fire
                                 changeColor("Fire ",ConsoleColor.Red);
@@ -341,7 +341,7 @@ namespace cannon
                                 Console.Write($" charge. \n");
                                 return 150;
                             }
-                            if (element == cannonElement.Ice)
+                            if (element == MagicCannonElement.Ice)
                             {
                                 //Hyrdo, Thunder, Ice
                                 changeColor("Snow ",ConsoleColor.Cyan);
@@ -359,14 +359,14 @@ namespace cannon
                     if (cannonTurn % 3 == 0)
                     {
                         //Thunder Fire Charge
-                        if (element == cannonElement.Fire)
+                        if (element == MagicCannonElement.Fire)
                         {
                             changeColor("Steam",ConsoleColor.DarkRed);
                             Console.Write($" charge. \n");
                             return 30;
                         }
                         //Thunder Ice Charge
-                        if (element == cannonElement.Ice)
+                        if (element == MagicCannonElement.Ice)
                         {
                             changeColor("Glacier",ConsoleColor.DarkCyan);
                             Console.Write($" charge. \n");
@@ -384,14 +384,14 @@ namespace cannon
                     if (cannonTurn % 3 == 0)
                     {
                         //Double Fire charge
-                        if (element == cannonElement.Fire)
+                        if (element == MagicCannonElement.Fire)
                         {
                             changeColor("Flash",ConsoleColor.Yellow);
                             Console.Write("-");
                             changeColor("Burn",ConsoleColor.Red);
                             Console.Write($" charge. \n");
                         }
-                        if (element == cannonElement.Ice)
+                        if (element == MagicCannonElement.Ice)
                         {
                             //Double Charge Ice
                             changeColor("Flash",ConsoleColor.Yellow);
@@ -410,14 +410,14 @@ namespace cannon
                 if (cannonTurn % 3 == 0)
                 {
                     //Fire Charge
-                    if (element == cannonElement.Fire)
+                    if (element == MagicCannonElement.Fire)
                     {
                         changeColor("Fire",ConsoleColor.Red);
                         Console.Write($" Charge. \n");
                         return 3;
                         //Ice charge
                     }
-                    else if (element == cannonElement.Ice)
+                    else if (element == MagicCannonElement.Ice)
                     {
                         changeColor("Frost",ConsoleColor.Cyan);
                         Console.Write($" Charge. \n");
@@ -430,8 +430,13 @@ namespace cannon
             }
             return 0;
         }
-        public enum cannonElement {Fire, Ice, Criogenic, Blaze}
+        
+        public static void BasicCannon(){
+            Random random = new Random();
+        }
+        public enum MagicCannonElement {Fire, Ice, Criogenic, Blaze}
         public enum cannonLocation {Left, Center, Right, Upper, Super}
+        public enum cannonTypes {Basic, Magic, Auto }
     }
     public class Text{
         static public void changeColor(string text, ConsoleColor color){

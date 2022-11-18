@@ -177,6 +177,25 @@ internal class Program
         }
         return input;
     } 
+    static void radarPing((int,int)manPlace){
+            changeColor("The Radar detected ",ConsoleColor.DarkGray);
+                changeColor("The Manticore ",ConsoleColor.Red);
+                changeColor("in the [",ConsoleColor.DarkGray);
+                if(manPlace.Item1 > 0){
+                    changeColor("+",ConsoleColor.Green);
+                }
+                if(manPlace.Item1 < 0){
+                    changeColor("-",ConsoleColor.Red);
+                }
+                changeColor(",",ConsoleColor.DarkGray);
+                if(manPlace.Item2 > 0){
+                    changeColor("+",ConsoleColor.Green);
+                }
+                if(manPlace.Item2 < 0){
+                    changeColor("-",ConsoleColor.Red);
+                }
+                changeColor("] quadrent \n",ConsoleColor.DarkGray);
+    }
     static void battle((int,int) manPlace)
         {
             //Determin the power of magic cannon
@@ -190,17 +209,21 @@ internal class Program
             //to determin what the player is doing
             int playerChoise;
             //The Cannon Data
-            bool[] hasCannon = new bool[5] {false,true,true,false,false}; 
+            bool[] hasCannon = new bool[] {false,true,true,false,false}; 
             cannonLocation[] cannonLookup = new cannonLocation[] {cannonLocation.Left,cannonLocation.Center,cannonLocation.Right,cannonLocation.Upper,cannonLocation.Super};
-            (int,int)[] cannonTarget = new (int,int)[5] {(0,0),(0,0),(0,0),(0,0),(0,0)};
+            (int,int)[] cannonTarget = new (int,int)[] {(0,0),(0,0),(0,0),(0,0),(0,0)};
             int[] cannonHP = new int[] {5,5,5,5,0};
-            int[] cannonLevel = new int [] {1,1,1,1,0};
+            int[] cannonLevel = new int[] {1,1,1,1,0};
+            cannonTypes[] curentCannonType = new cannonTypes[] {cannonTypes.Basic,cannonTypes.Magic,cannonTypes.Magic,cannonTypes.Basic};
+            int[] cannonDamage = new int[] {0,0,0,0};
             //settings
             bool viewAdvancedHP = false;
 
 
             Random random = new Random();
             int damage = 0;
+
+            //This is where the game loop starts
             while (cityHP > 0 && manHP > 0)
             {
                 //this is the first line, the ones that displasy the health of consolas and the mantacore.
@@ -343,30 +366,16 @@ internal class Program
                 int determinIfCannonCanFire = 0;
                 foreach (bool thing in hasCannon){
                     if(hasCannon[determinIfCannonCanFire] == true && cannonHP[determinIfCannonCanFire] > 0){
-                        damage = MagicCannon(cannonTurn, cannonLevel[determinIfCannonCanFire], cannonElement.Fire, cannonLookup[determinIfCannonCanFire]);
+                        if (curentCannonType[determinIfCannonCanFire] == cannonTypes.Magic){
+                            cannonDamage[determinIfCannonCanFire] = MagicCannon(cannonTurn, cannonLevel[determinIfCannonCanFire], MagicCannonElement.Fire, cannonLookup[determinIfCannonCanFire]);
+                        }
                         Console.Write($"Target: {cannonTarget[determinIfCannonCanFire]}   \n");
                     }
                     determinIfCannonCanFire++;
                 }
 
                 //The Radar ping showing where the manticore is
-                changeColor("The Radar detected ",ConsoleColor.DarkGray);
-                changeColor("The Manticore ",ConsoleColor.Red);
-                changeColor("in the [",ConsoleColor.DarkGray);
-                if(manPlace.Item1 > 0){
-                    changeColor("+",ConsoleColor.Green);
-                }
-                if(manPlace.Item1 < 0){
-                    changeColor("-",ConsoleColor.Red);
-                }
-                changeColor(",",ConsoleColor.DarkGray);
-                if(manPlace.Item2 > 0){
-                    changeColor("+",ConsoleColor.Green);
-                }
-                if(manPlace.Item2 < 0){
-                    changeColor("-",ConsoleColor.Red);
-                }
-                changeColor("] quadrent \n",ConsoleColor.DarkGray);
+                radarPing(manPlace);
 
                 //the player does something
                 playerChoise = takeinput();
@@ -455,7 +464,7 @@ internal class Program
                             changeColor("Direct Hit",ConsoleColor.Magenta);
                             Console.Write("!");
                             Console.Write($" This did {damage} Damage! \n");
-                            manHP = manHP - damage;
+                            manHP = manHP - cannonDamage[checkHasCannon];
                         }
 
                         if (manPlace.Item1 > entry.Item1)

@@ -30,3 +30,9 @@ Goal2 complete
 All active cannons will now show what charge they have
 fixed error where a cannon could target above y = 50
 Now shows when x and y are too big or too small rather than useing a blanket statment
+
+
+11/18/22
+
+Cannons now can be more than just the magic type
+fixed error where all cannons did the damamge of the last cannon
