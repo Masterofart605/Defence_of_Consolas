@@ -8,19 +8,21 @@ internal class Program
     static void Main(string[] args)
     {
         (int,int) manPlace = shipPlacer(); /*locationAssignAndGuess(1);*/
-        
         Console.Clear();
+        e();
         Console.ForegroundColor = ConsoleColor.Blue;
         Console.Write("Defender Of Consolas ");
         Console.ForegroundColor = ConsoleColor.White;
-        Console.Write($"Now is your chance to fight back! \n");
+        Console.Write($"The City is under attack it is time to fight back! \n");
         battle(manPlace);
-        //e();
+        
     }
 
 
     static void e()
         {
+            //this exists just so that I can see what all of the console colors like when printed in the console
+            //it is not used in the game
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Write("e");
             Console.ForegroundColor = ConsoleColor.Blue;
@@ -88,9 +90,6 @@ internal class Program
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Write("e");
         }
-
-
-
     static (int,int) shipPlacer()
         {
             Random random = new Random();
@@ -167,7 +166,7 @@ internal class Program
         if (input == 1){
             while (true){
                 try{
-                    Console.Write($"1:Change Cannon Target \n2:Toggle Advanced HP view \n");
+                    Console.Write($"1:Change Cannon Target \n2:Toggle Advanced HP view \n3:Toggle Advanced Enemy view \n4:Toggle extra missed shot guide \n5:Upgrade Cannons\n");
                     input = Convert.ToInt32(Console.ReadLine());
                     break;
                 }catch{
@@ -177,24 +176,24 @@ internal class Program
         }
         return input;
     } 
-    static void radarPing((int,int)manPlace){
+    static void radarPing(List<(int,int)> enemyPlacement, int index){
             changeColor("The Radar detected ",ConsoleColor.DarkGray);
-                changeColor("The Manticore ",ConsoleColor.Red);
-                changeColor("in the [",ConsoleColor.DarkGray);
-                if(manPlace.Item1 > 0){
-                    changeColor("+",ConsoleColor.Green);
-                }
-                if(manPlace.Item1 < 0){
-                    changeColor("-",ConsoleColor.Red);
-                }
-                changeColor(",",ConsoleColor.DarkGray);
-                if(manPlace.Item2 > 0){
-                    changeColor("+",ConsoleColor.Green);
-                }
-                if(manPlace.Item2 < 0){
-                    changeColor("-",ConsoleColor.Red);
-                }
-                changeColor("] quadrent \n",ConsoleColor.DarkGray);
+            changeColor("The Manticore ",ConsoleColor.Red);
+            changeColor("in the [",ConsoleColor.DarkGray);
+            if(enemyPlacement[index].Item1 > 0){
+                changeColor("+",ConsoleColor.Green);
+            }
+            if(enemyPlacement[index].Item1 < 0){
+                changeColor("-",ConsoleColor.Red);
+            }
+            changeColor(",",ConsoleColor.DarkGray);
+            if(enemyPlacement[index].Item2 > 0){
+                changeColor("+",ConsoleColor.Green);
+            }
+            if(enemyPlacement[index].Item2 < 0){
+                changeColor("-",ConsoleColor.Red);
+            }
+            changeColor("] quadrent \n",ConsoleColor.DarkGray);
     }
     static void battle((int,int) manPlace)
         {
@@ -204,22 +203,33 @@ internal class Program
             //{Main Wall, Secondary Wall, City Center}
             int cityHP = 25;
             int[] cityPartsHp = new int[3]{10,10,5};
-            //The Hp of the manticore
+            //All of the enemy settings
+            List<(int,int)> enemyPlacement = new List<(int,int)>();
+            List<int> enemyHp = new List<int>();
+            /*Test the enemy location on the radar*/ 
+                (int,int) imMad = (30,30); 
+                enemyPlacement.Add(imMad); 
+                enemyHp.Add(10);
+                imMad = (-15,20);
+                enemyPlacement.Add(imMad);
+                enemyHp.Add(10);
+            
+
             int manHP = 10;
             //to determin what the player is doing
             int playerChoise;
-            //The Cannon Data
-            bool[] hasCannon = new bool[] {false,true,true,false,false}; 
-            cannonLocation[] cannonLookup = new cannonLocation[] {cannonLocation.Left,cannonLocation.Center,cannonLocation.Right,cannonLocation.Upper,cannonLocation.Super};
+            //The Cannon Data 
+            //{left,center,right,upper,super}
+            bool[] hasCannon = new bool[] {false,false,true,false,false}; 
+            /*DON'T CHANGE*/cannonLocation[] cannonLookup = new cannonLocation[] {cannonLocation.Left,cannonLocation.Center,cannonLocation.Right,cannonLocation.Upper,cannonLocation.Super};
             (int,int)[] cannonTarget = new (int,int)[] {(0,0),(0,0),(0,0),(0,0),(0,0)};
             int[] cannonHP = new int[] {5,5,5,5,0};
-            int[] cannonLevel = new int[] {1,1,1,1,0};
-            cannonTypes[] curentCannonType = new cannonTypes[] {cannonTypes.Basic,cannonTypes.Magic,cannonTypes.Magic,cannonTypes.Basic};
+            int[] cannonLevel = new int[] {1,1,2,1,0};
+            cannonTypes[] curentCannonType = new cannonTypes[] {cannonTypes.Basic,cannonTypes.Basic,cannonTypes.Basic,cannonTypes.Basic};
             int[] cannonDamage = new int[] {0,0,0,0};
-            //settings
-            bool viewAdvancedHP = false;
-
-
+            //settings {City HP, Enemy HP view, Extra Missed Shot guide}
+            bool[] viewSettings = new bool[] {false,false,true};
+            int upgradePoints = 0;
             Random random = new Random();
             int damage = 0;
 
@@ -227,9 +237,10 @@ internal class Program
             while (cityHP > 0 && manHP > 0)
             {
                 //this is the first line, the ones that displasy the health of consolas and the mantacore.
+                //this is if advancced Hp view is not checked
                 Console.WriteLine($"----------------------------------------");
                 Console.Write($"Status: Round: {cannonTurn} ");
-                if (viewAdvancedHP == false){
+                if (viewSettings[0] == false){
                     //Veiw City Hp basic
                     changeColor("Consolas: ",ConsoleColor.DarkBlue);
                     if (cityHP > 15)
@@ -265,7 +276,8 @@ internal class Program
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Write($"/10 \n");
                 }
-                if (viewAdvancedHP == true){
+                //This group is what displays when advanced hp is true
+                if (viewSettings[0] == true){
                     //Veiw city hp advanced
                     changeColor("\nConsolas ",ConsoleColor.DarkBlue);
                     changeColor("Main Wall: ",ConsoleColor.White);
@@ -358,54 +370,146 @@ internal class Program
                     changeColor("/5 \n",ConsoleColor.White);
 
 
-
-
+                    //The Manticore
+                    changeColor("Manticore: ",ConsoleColor.Red);
+                    if (manHP > 6)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    else if (manHP > 3)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    Console.Write(manHP);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write($"/10 \n");
                 }
 
                 //this is the second line where we show what state the cannon is at.
-                int determinIfCannonCanFire = 0;
+                //as well as what cordanents that are being targeted.
+                //Index is used for all for each loops to help cycle trough all indexes in the array
+                int index = 0;
+                int index2 = 0;
                 foreach (bool thing in hasCannon){
-                    if(hasCannon[determinIfCannonCanFire] == true && cannonHP[determinIfCannonCanFire] > 0){
-                        if (curentCannonType[determinIfCannonCanFire] == cannonTypes.Magic){
-                            cannonDamage[determinIfCannonCanFire] = MagicCannon(cannonTurn, cannonLevel[determinIfCannonCanFire], MagicCannonElement.Fire, cannonLookup[determinIfCannonCanFire]);
+                    if(hasCannon[index] == true && cannonHP[index] > 0){
+                        //Currently this only checks if the cannon is a magic cannon type
+                        if (curentCannonType[index] == cannonTypes.Magic){
+                            //outputs cannon damage baised on the cannon's level and the turn number and stores it in the damage array
+                            cannonDamage[index] = MagicCannon(cannonTurn, cannonLevel[index], MagicCannonElement.Fire, cannonLookup[index]);
                         }
-                        Console.Write($"Target: {cannonTarget[determinIfCannonCanFire]}   \n");
+                        if (curentCannonType[index] == cannonTypes.Basic){
+                            cannonDamage[index] = BasicCannon(cannonLevel[index], cannonLookup[index]);
+                        }
+                        Console.Write($"Target: {cannonTarget[index]}   \n");
                     }
-                    determinIfCannonCanFire++;
+                    index++;
                 }
 
                 //The Radar ping showing where the manticore is
-                radarPing(manPlace);
+                index = 0;
+                foreach((int,int) thing in enemyPlacement){
+                    radarPing(enemyPlacement,index);
+                    index++;
+                }
+                
 
                 //the player does something
                 playerChoise = takeinput();
 
 
 
-
+                //Advanced Hp
                 if (playerChoise == 2){
-                    if (viewAdvancedHP == true){
-                        viewAdvancedHP = false;
+                    if (viewSettings[0] == true){
+                        viewSettings[0] = false;
                     }else{
-                    viewAdvancedHP = true;
+                    viewSettings[0] = true;
+                    }
+                    playerChoise = takeinput();
+                }
+                //Enemy View
+                if (playerChoise == 3){
+                    if (viewSettings[1] == true){
+                        viewSettings[1] = false;
+                    }else{
+                    viewSettings[1] = true;
+                    }
+                    playerChoise = takeinput();
+                }
+                //Extra Missed Sot guide
+                if (playerChoise == 4){
+                    if (viewSettings[2] == true){
+                        viewSettings[2] = false;
+                    }else{
+                    viewSettings[2] = true;
                     }
                     playerChoise = takeinput();
                 }
 
+                //Upgrade Cannons
+                if (playerChoise == 5){
+                    while(true){
+                        try{
+                            int cost = 0;
+                            Console.Write($"You have ");
+                            changeColor($"{upgradePoints}",ConsoleColor.Blue);
+                            changeColor(" Upgrade Points",ConsoleColor.Yellow);
+                            Console.Write(" what would you like to upgrade? \n");
+                            index = 0;
+                            foreach(cannonLocation thing in cannonLookup){
+                                //If it has a show what cannon has, else say empty
+                                Console.Write($" {index+1}:");
+                                if(hasCannon[index] == true){
+                                    //basic cannons show up as white can only go to level three
+                                    if(curentCannonType[index] == cannonTypes.Basic){
+                                        if (cannonLevel[index] <= 2){
+                                            Console.Write($"Basic, Level:{cannonLevel[index]}     (Level Up:{Math.Pow(cannonLevel[index],2)*5})(Upgrade:(Magic:{(Math.Pow(cannonLevel[index],2)*5)*2}|Ink:??|) \n");
+                                        }else{
+                                            Console.Write($"Basic, Level:{cannonLevel[index]}     (Upgrade(Magic:??|Ink:??|) \n");
+                                        } 
+                                    }
+                                    if(curentCannonType[index] == cannonTypes.Magic){
+                                        //Change color of the word magic depending on level
+                                        if(cannonLevel[index] <= 2){
+                                            changeColor("Magic",ConsoleColor.DarkMagenta);
+                                        }else if (cannonLevel[index] > 2){
+                                            changeColor("Magic",ConsoleColor.Magenta);
+                                        }
+                                        Console.Write($", Level:{cannonLevel[index]}     (Level Up:{Math.Pow((cannonLevel[index]+1),3)*4}) \n");
+                                        
+                                    }
+                                }else{
+                                    changeColor("Empty  Station",ConsoleColor.DarkGray);
+                                    Console.Write("     (Basic:1)\n");
+                                }
+                                index++;
+                            }
+                            playerChoise = Convert.ToInt32(Console.ReadLine());
+                        }catch(FormatException){
+                            Console.WriteLine($"That is not a valid input");
+                        }
+                    }
+                }
+
+                //The Player Selects to change the target of a cannon
                 if (playerChoise == 1){
                     while(true){
                         try{
                             Console.Write($"Which cannon do you want to change? \n 0:finish \n");
                             int selectNumber = 1;
-                            int bruhThisSucks = 0;
+                            int increment = 0;
                             foreach(bool entry in hasCannon){
                                 if(entry == true){
-                                    changeColor($" {selectNumber}:{cannonLookup[bruhThisSucks]} \n",ConsoleColor.White);
+                                    changeColor($" {selectNumber}:{cannonLookup[increment]} \n",ConsoleColor.White);
                                 }else{
-                                    changeColor($" {selectNumber}:{cannonLookup[bruhThisSucks]} \n",ConsoleColor.DarkGray);
+                                    changeColor($" {selectNumber}:{cannonLookup[increment]} \n",ConsoleColor.DarkGray);
                                 }
                                 selectNumber++;
-                                bruhThisSucks++;
+                                increment++;
                             }
                             playerChoise = Convert.ToInt32(Console.ReadLine());
                             cannonLocation wichCannonDoYouWantToChange = cannonLocation.Left;
@@ -446,105 +550,100 @@ internal class Program
                 
 
                 
-                //This is the line where the player guesses.
-                //guess = locationAssignAndGuess(2);
-                
-
-                
-
+                Console.Write($"---------------------------------------- \n");
                 //This is the line where we determin if the cannon hit.
-                int checkHasCannon = 0;
+                index = 0;
                 foreach((int,int) entry in cannonTarget){
-                    if(hasCannon[checkHasCannon] == true && cannonHP[checkHasCannon] > 0){
+                    //The "If" checks if a cannon exists and has more that 0 hp for the selected area
+                    if(hasCannon[index] == true && cannonHP[index] > 0){
                         bool[] shotRelitiveToEnemy = new bool[4] {false,false,false,false};
-                        Console.Write($"{cannonLookup[checkHasCannon]} cannon's round ");
-                        if (manPlace == entry)
-                        {
-                            Console.Write("was a ");
-                            changeColor("Direct Hit",ConsoleColor.Magenta);
-                            Console.Write("!");
-                            Console.Write($" This did {damage} Damage! \n");
-                            manHP = manHP - cannonDamage[checkHasCannon];
-                        }
+                        Console.Write($"{cannonLookup[index]} cannon's round ");
+                        index2 = 0;
+                        foreach((int,int)thing in enemyPlacement){
+                            if (enemyPlacement[index2] == entry)
+                            {
+                                Console.Write("was a ");
+                                changeColor("Direct Hit",ConsoleColor.Magenta);
+                                Console.Write("!");
+                                Console.Write($" This did {cannonDamage[index]} Damage! \n");
+                                enemyHp[index2] = enemyHp[index2] - cannonDamage[index];
+                            }
 
-                        if (manPlace.Item1 > entry.Item1)
-                        {
-                            changeColor("fell to the left",ConsoleColor.DarkYellow);
-                            //Console.Write(" of ");
-                            //changeColor("The Manticore",ConsoleColor.DarkRed);
-                            //Console.Write(". \n");
-                            shotRelitiveToEnemy[0] = true;
-                        }
+                            if (enemyPlacement[index2].Item1 > entry.Item1)
+                            {
+                                changeColor("fell to the left",ConsoleColor.DarkYellow);
+                                //Console.Write(" of ");
+                                //changeColor("The Manticore",ConsoleColor.DarkRed);
+                                //Console.Write(". \n");
+                                shotRelitiveToEnemy[0] = true;
+                            }
 
-                        if (manPlace.Item1 < entry.Item1)
-                        {
-                            changeColor("fell to the right",ConsoleColor.DarkYellow);
-                            //Console.Write(" of ");
-                            //changeColor("The Manticore",ConsoleColor.DarkRed);
-                            //Console.Write(". \n");
-                            shotRelitiveToEnemy[1] = true;
-                        }
-                        Console.Write(" and ");
-                        if (manPlace.Item2 > entry.Item2)
-                        {
-                            changeColor("fell short", ConsoleColor.DarkYellow);
-                            Console.Write(" of ");
-                            changeColor(" The Manticore", ConsoleColor.DarkRed);
-                            Console.Write(". \n");
-                            shotRelitiveToEnemy[2] = true;
-                        }
+                            if (enemyPlacement[index2].Item1 < entry.Item1)
+                            {
+                                changeColor("fell to the right",ConsoleColor.DarkYellow);
+                                //Console.Write(" of ");
+                                //changeColor("The Manticore",ConsoleColor.DarkRed);
+                                //Console.Write(". \n");
+                                shotRelitiveToEnemy[1] = true;
+                            }
+                            Console.Write(" and ");
+                            if (enemyPlacement[index2].Item2 > entry.Item2)
+                            {
+                                changeColor("fell short", ConsoleColor.DarkYellow);
+                                Console.Write(" of ");
+                                changeColor(" The Manticore", ConsoleColor.DarkRed);
+                                Console.Write(". \n");
+                                shotRelitiveToEnemy[2] = true;
+                            }
+                            
+                            if (enemyPlacement[index2].Item2 < entry.Item2)
+                            {
+                                changeColor("overshot", ConsoleColor.DarkYellow);
+                                changeColor(" The Manticore", ConsoleColor.DarkRed);
+                                Console.Write(". \n");
+                                shotRelitiveToEnemy[3] = true;
+                            }
+
+                            if (damage == 10000)
+                            {
+                                enemyHp[index2] = 0;
+                            }
                         
-                        if (manPlace.Item2 < entry.Item2)
-                        {
-                            changeColor("overshot", ConsoleColor.DarkYellow);
-                            changeColor(" The Manticore", ConsoleColor.DarkRed);
-                            Console.Write(". \n");
-                            shotRelitiveToEnemy[3] = true;
-                        }
-
-                        if (damage == 10000)
-                        {
-                            manHP = 0;
-                        }
-
-                        //Show the relivie possition of the missed shot
-                        if(shotRelitiveToEnemy[0] == true){
-                            if(shotRelitiveToEnemy[3] == true){
-                                changeColor(" *",ConsoleColor.Green);
-                                changeColor("\n  M\n",ConsoleColor.Red);
-                            }else if(shotRelitiveToEnemy[2] == true){
-                                changeColor("  M",ConsoleColor.Red);
-                                changeColor("\n *\n",ConsoleColor.Green);
-                            }else{
-                                changeColor(" *",ConsoleColor.Green);
-                                changeColor("M\n",ConsoleColor.Red);
+                            //Show the relitive possition of the missed shot
+                            if (viewSettings[2] == true){
+                                if(shotRelitiveToEnemy[0] == true){
+                                    if(shotRelitiveToEnemy[3] == true){
+                                        changeColor(" *",ConsoleColor.Green);
+                                        changeColor("\n  M\n",ConsoleColor.Red); 
+                                    }else if(shotRelitiveToEnemy[2] == true){
+                                        changeColor("  M",ConsoleColor.Red);
+                                        changeColor("\n *\n",ConsoleColor.Green);
+                                    }else{
+                                        changeColor(" *",ConsoleColor.Green);
+                                        changeColor("M\n",ConsoleColor.Red);
+                                    }
+                                }else if(shotRelitiveToEnemy[1] == true){
+                                    if(shotRelitiveToEnemy[3] == true){
+                                        changeColor("   *",ConsoleColor.Green);
+                                        changeColor("\n  M\n",ConsoleColor.Red);
+                                    }else if(shotRelitiveToEnemy[2] == true){
+                                        changeColor("  M",ConsoleColor.Red);
+                                        changeColor("\n   *\n",ConsoleColor.Green);
+                                    }else{
+                                        changeColor(" M",ConsoleColor.Red);
+                                        changeColor("*\n",ConsoleColor.Green);
+                                    }
+                                }else if(shotRelitiveToEnemy[2]==true){
+                                    changeColor("  M",ConsoleColor.Red);
+                                    changeColor("\n  *\n",ConsoleColor.Green);
+                                }else if(shotRelitiveToEnemy[3]==true){
+                                    changeColor("  *",ConsoleColor.Green);
+                                    changeColor("\n  M\n",ConsoleColor.Red);
+                                }
                             }
-                        }else if(shotRelitiveToEnemy[1] == true){
-                            if(shotRelitiveToEnemy[3] == true){
-                                changeColor("   *",ConsoleColor.Green);
-                                changeColor("\n  M\n",ConsoleColor.Red);
-                            }else if(shotRelitiveToEnemy[2] == true){
-                                changeColor("  M",ConsoleColor.Red);
-                                changeColor("\n   *\n",ConsoleColor.Green);
-                            }else{
-                                changeColor(" M",ConsoleColor.Red);
-                                changeColor("*\n",ConsoleColor.Green);
-                            }
-                        }else if(shotRelitiveToEnemy[2]==true){
-                            changeColor("  M",ConsoleColor.Red);
-                            changeColor("\n  *\n",ConsoleColor.Green);
-                        }else if(shotRelitiveToEnemy[3]==true){
-                            changeColor("  *",ConsoleColor.Green);
-                            changeColor("\n  M\n",ConsoleColor.Red);
                         }
-
-
-
-
-
-
                     }
-                    checkHasCannon++;
+                    index++;
                 }
 
 

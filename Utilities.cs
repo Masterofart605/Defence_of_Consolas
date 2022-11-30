@@ -8,7 +8,10 @@ namespace cannon
     {
         public static int MagicCannon(int cannonTurn, int level, MagicCannonElement element, cannonLocation location)
         {
-            Console.Write($"The Cannon at {location} Station has a ");//basic charge...
+            /*For each level of the cannon I had to paste in all the effects of the last layer
+            I know it gets a little confuseing at times, but it was the only way.
+            */
+            Console.Write($"The Magic Cannon at {location} Station has a ");//basic charge...
             if (level == 1)
             {
                 //Basic Shot
@@ -431,12 +434,38 @@ namespace cannon
             return 0;
         }
         
-        public static void BasicCannon(){
-            Random random = new Random();
+        public static int BasicCannon(int level, cannonLocation location){
+            Console.Write($"The Basic Cannon at {location} is ready to fire. \n");
+            if (level == 1){
+                return 1;
+            }
+            if (level == 2){
+                return 5;
+            }
+            if (level >= 3){
+                return 15;
+            }
+            return 0;
+        }
+        public static void AutoCannon(){
+            
+        }
+        public static int inkCannon(int level, (int, int) target, List<(int,int)> enemyLocation){
+            int counter = 0;
+            foreach((int,int) thing in enemyLocation){
+                if (target == enemyLocation[counter]){
+                    Console.Write($"An enemy was spotted at {enemyLocation[counter]}");
+                }
+                counter++;
+            }
+            if (level == 1){
+                return 3;
+            }
+            return 0;
         }
         public enum MagicCannonElement {Fire, Ice, Criogenic, Blaze}
         public enum cannonLocation {Left, Center, Right, Upper, Super}
-        public enum cannonTypes {Basic, Magic, Auto }
+        public enum cannonTypes {Basic, Magic, Auto, Ink }
     }
     public class Text{
         static public void changeColor(string text, ConsoleColor color){
@@ -445,7 +474,7 @@ namespace cannon
             Console.ForegroundColor = ConsoleColor.White;
         }
      }
-     public class Other{
+    public class Other{
         public static (int,int) Targeting((int,int) target, cannonLocation id, bool changeTarget, bool hasCannon){
             (int,int) newTarget;
             if (hasCannon == false){
@@ -491,4 +520,12 @@ namespace cannon
         }
      }
     
+    public class Settings{
+        public static void advancedCityHP(){
+
+        }
+        public static void basicCityHp(int cityHP){
+
+        }
+    }
 }
