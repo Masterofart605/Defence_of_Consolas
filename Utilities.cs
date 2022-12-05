@@ -435,7 +435,7 @@ namespace cannon
         }
         
         public static int BasicCannon(int level, cannonLocation location){
-            Console.Write($"The Basic Cannon at {location} is ready to fire. \n");
+            Console.Write($"The Basic Cannon at {location} Station is ready to fire. \n");
             if (level == 1){
                 return 1;
             }
@@ -447,8 +447,38 @@ namespace cannon
             }
             return 0;
         }
-        public static void AutoCannon(){
+        public static (int,(int,int)) AutoCannon(int level, List<(int,int)> enemyLocation, (int,int) cannonTarget, cannonLocation location){
+            Random random = new Random();
+            int lenght = 0;
+            bool hastarget = false; 
+            foreach((int,int)thing in enemyLocation){
+                if(thing == cannonTarget){
+                    hastarget = true;
+                }
+                lenght++;
+            }
+            (int,int) target = (-50,-50);
+            if(hastarget == false){
+                int ship1 = random.Next(0, lenght-1);
+                target = enemyLocation[ship1];
+            }else{
+                target = cannonTarget;
+            }
             
+            Console.Write($"The Auto Cannon at {location} Startion is ready to fire at:{target} \n");
+            int damage = 0;
+            if(level == 1){
+                damage = 1;
+            }else if(level == 2){
+                damage = 2;
+            }else if(level == 3){
+                damage = 3;
+            }else if(level == 4){
+                damage = 5;
+            }else if(level == 5){
+                damage = 15;
+            }
+            return (damage,target);
         }
         public static int inkCannon(int level, (int, int) target, List<(int,int)> enemyLocation){
             int counter = 0;
@@ -465,7 +495,7 @@ namespace cannon
         }
         public enum MagicCannonElement {Fire, Ice, Criogenic, Blaze}
         public enum cannonLocation {Left, Center, Right, Upper, Super}
-        public enum cannonTypes {Basic, Magic, Auto, Ink }
+        public enum cannonTypes {Basic, Magic, Auto, Ink, Super}
     }
     public class Text{
         static public void changeColor(string text, ConsoleColor color){
@@ -521,11 +551,122 @@ namespace cannon
      }
     
     public class Settings{
-        public static void advancedCityHP(){
+        public static void advancedCityHP(int[] cityPartsHp, int [] cannonHP){
+            changeColor("\nConsolas ",ConsoleColor.DarkBlue);
+                    changeColor("Main Wall: ",ConsoleColor.White);
+                    //Main Wall
+                    if(cityPartsHp[0] < 3){
+                        changeColor($"{cityPartsHp[0]}",ConsoleColor.Red);
+                    }else if(cityPartsHp[0] <= 5){
+                        changeColor($"{cityPartsHp[0]}",ConsoleColor.Yellow);
+                    }if(cityPartsHp[0] > 5){
+                        changeColor($"{cityPartsHp[0]}",ConsoleColor.Green);
+                    }
+                    //Secondary wall
+                    changeColor("/10 ",ConsoleColor.White);
+                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
+                    changeColor("Secondary Wall: ",ConsoleColor.White);
+                    if(cityPartsHp[1] < 3){
+                        changeColor($"{cityPartsHp[1]}",ConsoleColor.Red);
+                    }else if(cityPartsHp[1] <= 5){
+                        changeColor($"{cityPartsHp[1]}",ConsoleColor.Yellow);
+                    }if(cityPartsHp[1] > 5){
+                        changeColor($"{cityPartsHp[1]}",ConsoleColor.Green);
+                    }
+                    //City Center
+                    changeColor("/10 ",ConsoleColor.White);
+                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
+                    changeColor("City Center: ",ConsoleColor.White);
+                    if(cityPartsHp[2] < 2){
+                        changeColor($"{cityPartsHp[2]}",ConsoleColor.Red);
+                    }else if(cityPartsHp[2] <= 3){
+                        changeColor($"{cityPartsHp[2]}",ConsoleColor.Yellow);
+                    }if(cityPartsHp[2] > 3){
+                        changeColor($"{cityPartsHp[2]}",ConsoleColor.Green);
+                    }
+                    changeColor("/5 ",ConsoleColor.White);
+                    //City Hp
+                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
+                    changeColor("Total Hp: ",ConsoleColor.White);
+                    int totalHp = 0;
+                    foreach(int thing in cityPartsHp){
+                        totalHp = totalHp + thing;
+                    }
+                    if(totalHp > 15){
+                        changeColor($"{totalHp}",ConsoleColor.Green);
+                    }else if(totalHp > 5){
+                        changeColor($"{totalHp}",ConsoleColor.Yellow);
+                    }else{
+                        changeColor($"{totalHp}",ConsoleColor.Red);
+                    }
+                    changeColor("/25",ConsoleColor.White);
 
+                    //Upper cannon tower
+                    changeColor("\n  Upper Cannon Tower: ",ConsoleColor.White);
+                    if(cannonHP[3] < 2){
+                        changeColor($"{cannonHP[3]}",ConsoleColor.Red);
+                    }else if(cannonHP[3] <= 3){
+                        changeColor($"{cannonHP[3]}",ConsoleColor.Yellow);
+                    }if(cannonHP[3] > 3){
+                        changeColor($"{cannonHP[3]}",ConsoleColor.Green);
+                    }
+                    changeColor("/5 ",ConsoleColor.White);
+                    //Right cannon tower
+                    changeColor("\n  Right Cannon Tower: ",ConsoleColor.White);
+                    if(cannonHP[2] < 2){
+                        changeColor($"{cannonHP[2]}",ConsoleColor.Red);
+                    }else if(cannonHP[2] <= 3){
+                        changeColor($"{cannonHP[2]}",ConsoleColor.Yellow);
+                    }if(cannonHP[2] > 3){
+                        changeColor($"{cannonHP[2]}",ConsoleColor.Green);
+                    }
+                    changeColor("/5 ",ConsoleColor.White);
+                    //Center cannon tower
+                    changeColor("\n  Center Cannon Tower: ",ConsoleColor.White);
+                    if(cannonHP[1] < 2){
+                        changeColor($"{cannonHP[1]}",ConsoleColor.Red);
+                    }else if(cannonHP[1] <= 3){
+                        changeColor($"{cannonHP[1]}",ConsoleColor.Yellow);
+                    }if(cannonHP[1] > 3){
+                        changeColor($"{cannonHP[1]}",ConsoleColor.Green);
+                    }
+                    changeColor("/5 ",ConsoleColor.White);
+                    //left cannon tower
+                    changeColor("\n  Left Cannon Tower: ",ConsoleColor.White);
+                    if(cannonHP[0] < 2){
+                        changeColor($"{cannonHP[0]}",ConsoleColor.Red);
+                    }else if(cannonHP[0] <= 3){
+                        changeColor($"{cannonHP[0]}",ConsoleColor.Yellow);
+                    }if(cannonHP[0] > 3){
+                        changeColor($"{cannonHP[0]}",ConsoleColor.Green);
+                    }
+                    changeColor("/5 \n",ConsoleColor.White);
         }
-        public static void basicCityHp(int cityHP){
-
+        public static void basicCityHp(int cityHP,int manHP){
+            changeColor("Consolas: ",ConsoleColor.DarkBlue);
+            if (cityHP > 15)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            else if (cityHP > 5)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            Console.Write(cityHP);
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"/25 ");   
+        }
+        public static void advancedEnimyHp(List<int> enemyHp){
+            int index = 0;
+            Console.Write("\n");
+            foreach(int thing in enemyHp){
+                changeColor($"{enemyHp[index]} \n",ConsoleColor.Red);
+                index++;
+            }
         }
     }
 }

@@ -53,13 +53,6 @@ Enemy data will now be stored in a list
 
 11/29/22
 
-radar will now show where all the enemys are in the list
-added many comments to help with clarity
-fix 1: Cannons will now show when they miss to the sides of all enemys
-cannons can now damage all enemys on a list
-Basic Cannons now say ready to fire to mach better with the magic cannon
-Added the Upgrade menu, (upgrades don't work quite yet)
-
 Goals:
 1:Add a basic turn system
 2:Add a basic cannon upgradeing system
@@ -68,3 +61,32 @@ Bugs/Needed fixes
 2:Cannons only show the nearest enimy (this may be in the long run im not sure how I would do it right now)
 3:Make Specific values for upgrade costs rather than useing functions (to allow better balaceing)
 
+radar will now show where all the enemys are in the list
+added many comments to help with clarity
+fix 1: Cannons will now show when they miss to the sides of all enemys
+cannons can now damage all enemys on a list
+Basic Cannons now say ready to fire to mach better with the magic cannon
+Added the Upgrade menu, (upgrades don't work quite yet)
+
+
+11/30/22 and Dec 1st, 2022
+
+Goals:
+1:Add a basic turn system
+2:Add a basic cannon upgradeing system
+3:City take damage from every enemy
+Bugs/Needed fixes
+1:Cannons only show the nearest enimy (this may be in the long run im not sure how I would do it right now)
+2:Make Specific values for upgrade costs rather than useing functions (to allow better balaceing)
+3:Fix auto cannons targetting a spot even when the target it dead.
+4:Fix cannons going into negative hp
+5:Auto Cannons hit All targets thats not good
+
+Implememted Auto Cannon fuctionality
+Auto Cannon now stays on the target it has rather that switching randomly
+Fix 4 complete: Cannons can no longer go into negavite HP
+Fix 5 is not a problem. I accidantaly had the enemys stacked up
+The game can now end again
+consolidated parts of the code to make it easier to read
+(I did alot of fixes that all resulted in the previouse thing I can't remder all of them. It took up most of the time.)
+this includdes makeing it so cannons can hit the different targets, fixing error where only the hp of the first target would show up and more.

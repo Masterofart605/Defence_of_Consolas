@@ -1,6 +1,7 @@
 ﻿using static cannon.Modes;
 using static cannon.Text;
 using static cannon.Other;
+using static cannon.Settings;
 
 namespace MyApp {
 internal class Program
@@ -206,13 +207,8 @@ internal class Program
             //All of the enemy settings
             List<(int,int)> enemyPlacement = new List<(int,int)>();
             List<int> enemyHp = new List<int>();
-            /*Test the enemy location on the radar*/ 
-                (int,int) imMad = (30,30); 
-                enemyPlacement.Add(imMad); 
-                enemyHp.Add(10);
-                imMad = (-15,20);
-                enemyPlacement.Add(imMad);
-                enemyHp.Add(10);
+            bool enemyStillAlive = true;
+            
             
 
             int manHP = 10;
@@ -224,17 +220,29 @@ internal class Program
             /*DON'T CHANGE*/cannonLocation[] cannonLookup = new cannonLocation[] {cannonLocation.Left,cannonLocation.Center,cannonLocation.Right,cannonLocation.Upper,cannonLocation.Super};
             (int,int)[] cannonTarget = new (int,int)[] {(0,0),(0,0),(0,0),(0,0),(0,0)};
             int[] cannonHP = new int[] {5,5,5,5,0};
-            int[] cannonLevel = new int[] {1,1,2,1,0};
-            cannonTypes[] curentCannonType = new cannonTypes[] {cannonTypes.Basic,cannonTypes.Basic,cannonTypes.Basic,cannonTypes.Basic};
-            int[] cannonDamage = new int[] {0,0,0,0};
+            int[] cannonLevel = new int[] {1,1,1,1,0};
+            cannonTypes[] curentCannonType = new cannonTypes[] {cannonTypes.Basic,cannonTypes.Basic,cannonTypes.Basic,cannonTypes.Basic,cannonTypes.Super};
+            int[] cannonDamage = new int[] {0,0,0,0,0};
             //settings {City HP, Enemy HP view, Extra Missed Shot guide}
             bool[] viewSettings = new bool[] {false,false,true};
             int upgradePoints = 0;
             Random random = new Random();
             int damage = 0;
+            //index is used in most of the foreach loops for reasons
+            int index = 0;
+            int index2 = 0;
+
+
+            /*Test the enemy location on the radar*/ 
+                (int,int) imMad = (30,30);
+                (int,int) imAlsoMad = (random.Next(-50,50),random.Next(-50,50)); 
+                enemyPlacement.Add(imMad); 
+                enemyHp.Add(10);
+                enemyPlacement.Add(imAlsoMad);
+                enemyHp.Add(10);
 
             //This is where the game loop starts
-            while (cityHP > 0 && manHP > 0)
+            while (cityPartsHp[2] > 0 && enemyStillAlive == true)
             {
                 //this is the first line, the ones that displasy the health of consolas and the mantacore.
                 //this is if advancced Hp view is not checked
@@ -242,134 +250,15 @@ internal class Program
                 Console.Write($"Status: Round: {cannonTurn} ");
                 if (viewSettings[0] == false){
                     //Veiw City Hp basic
-                    changeColor("Consolas: ",ConsoleColor.DarkBlue);
-                    if (cityHP > 15)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                    }
-                    else if (cityHP > 5)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    }
-                    Console.Write(cityHP);
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($"/25 ");
-                
-                    changeColor("Manticore: ",ConsoleColor.Red);
-                    if (manHP > 6)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                    }
-                    else if (manHP > 3)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                    }
-                    else
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                    }
-                    Console.Write(manHP);
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($"/10 \n");
+                    basicCityHp(cityHP,manHP);
                 }
                 //This group is what displays when advanced hp is true
                 if (viewSettings[0] == true){
                     //Veiw city hp advanced
-                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
-                    changeColor("Main Wall: ",ConsoleColor.White);
-                    //Main Wall
-                    if(cityPartsHp[0] < 3){
-                        changeColor($"{cityPartsHp[0]}",ConsoleColor.Red);
-                    }else if(cityPartsHp[0] <= 5){
-                        changeColor($"{cityPartsHp[0]}",ConsoleColor.Yellow);
-                    }if(cityPartsHp[0] > 5){
-                        changeColor($"{cityPartsHp[0]}",ConsoleColor.Green);
-                    }
-                    //Secondary wall
-                    changeColor("/10 ",ConsoleColor.White);
-                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
-                    changeColor("Secondary Wall: ",ConsoleColor.White);
-                    if(cityPartsHp[1] < 3){
-                        changeColor($"{cityPartsHp[1]}",ConsoleColor.Red);
-                    }else if(cityPartsHp[1] <= 5){
-                        changeColor($"{cityPartsHp[1]}",ConsoleColor.Yellow);
-                    }if(cityPartsHp[1] > 5){
-                        changeColor($"{cityPartsHp[1]}",ConsoleColor.Green);
-                    }
-                    //City Center
-                    changeColor("/10 ",ConsoleColor.White);
-                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
-                    changeColor("City Center: ",ConsoleColor.White);
-                    if(cityPartsHp[2] < 2){
-                        changeColor($"{cityPartsHp[2]}",ConsoleColor.Red);
-                    }else if(cityPartsHp[2] <= 3){
-                        changeColor($"{cityPartsHp[2]}",ConsoleColor.Yellow);
-                    }if(cityPartsHp[2] > 3){
-                        changeColor($"{cityPartsHp[2]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 ",ConsoleColor.White);
-                    //City Hp
-                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
-                    changeColor("Total Hp: ",ConsoleColor.White);
-                    int totalHp = 0;
-                    foreach(int thing in cityPartsHp){
-                        totalHp = totalHp + thing;
-                    }
-                    if(totalHp > 15){
-                        changeColor($"{totalHp}",ConsoleColor.Green);
-                    }else if(totalHp > 5){
-                        changeColor($"{totalHp}",ConsoleColor.Yellow);
-                    }else{
-                        changeColor($"{totalHp}",ConsoleColor.Red);
-                    }
-                    changeColor("/25",ConsoleColor.White);
-
-                    //Upper cannon tower
-                    changeColor("\n  Upper Cannon Tower: ",ConsoleColor.White);
-                    if(cannonHP[3] < 2){
-                        changeColor($"{cannonHP[3]}",ConsoleColor.Red);
-                    }else if(cannonHP[3] <= 3){
-                        changeColor($"{cannonHP[3]}",ConsoleColor.Yellow);
-                    }if(cannonHP[3] > 3){
-                        changeColor($"{cannonHP[3]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 ",ConsoleColor.White);
-                    //Right cannon tower
-                    changeColor("\n  Right Cannon Tower: ",ConsoleColor.White);
-                    if(cannonHP[2] < 2){
-                        changeColor($"{cannonHP[2]}",ConsoleColor.Red);
-                    }else if(cannonHP[2] <= 3){
-                        changeColor($"{cannonHP[2]}",ConsoleColor.Yellow);
-                    }if(cannonHP[2] > 3){
-                        changeColor($"{cannonHP[2]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 ",ConsoleColor.White);
-                    //Center cannon tower
-                    changeColor("\n  Center Cannon Tower: ",ConsoleColor.White);
-                    if(cannonHP[1] < 2){
-                        changeColor($"{cannonHP[1]}",ConsoleColor.Red);
-                    }else if(cannonHP[1] <= 3){
-                        changeColor($"{cannonHP[1]}",ConsoleColor.Yellow);
-                    }if(cannonHP[1] > 3){
-                        changeColor($"{cannonHP[1]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 ",ConsoleColor.White);
-                    //left cannon tower
-                    changeColor("\n  Left Cannon Tower: ",ConsoleColor.White);
-                    if(cannonHP[0] < 2){
-                        changeColor($"{cannonHP[0]}",ConsoleColor.Red);
-                    }else if(cannonHP[0] <= 3){
-                        changeColor($"{cannonHP[0]}",ConsoleColor.Yellow);
-                    }if(cannonHP[0] > 3){
-                        changeColor($"{cannonHP[0]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 \n",ConsoleColor.White);
-
-
+                    advancedCityHP(cityPartsHp,cannonHP);
+                }
+                    
+                if (viewSettings[1] == false){
                     //The Manticore
                     changeColor("Manticore: ",ConsoleColor.Red);
                     if (manHP > 6)
@@ -389,11 +278,14 @@ internal class Program
                     Console.Write($"/10 \n");
                 }
 
+                if (viewSettings[1] == true){
+                    advancedEnimyHp(enemyHp);
+                }
                 //this is the second line where we show what state the cannon is at.
                 //as well as what cordanents that are being targeted.
                 //Index is used for all for each loops to help cycle trough all indexes in the array
-                int index = 0;
-                int index2 = 0;
+                index = 0;
+                index2 = 0;
                 foreach (bool thing in hasCannon){
                     if(hasCannon[index] == true && cannonHP[index] > 0){
                         //Currently this only checks if the cannon is a magic cannon type
@@ -403,6 +295,11 @@ internal class Program
                         }
                         if (curentCannonType[index] == cannonTypes.Basic){
                             cannonDamage[index] = BasicCannon(cannonLevel[index], cannonLookup[index]);
+                        }
+                        if (curentCannonType[index] == cannonTypes.Auto){
+                            (int,(int,int)) output = AutoCannon(cannonLevel[index],enemyPlacement,cannonTarget[index],cannonLookup[index]);
+                            cannonDamage[index] = output.Item1;
+                            cannonTarget[index] = output.Item2;
                         }
                         Console.Write($"Target: {cannonTarget[index]}   \n");
                     }
@@ -469,7 +366,7 @@ internal class Program
                                         if (cannonLevel[index] <= 2){
                                             Console.Write($"Basic, Level:{cannonLevel[index]}     (Level Up:{Math.Pow(cannonLevel[index],2)*5})(Upgrade:(Magic:{(Math.Pow(cannonLevel[index],2)*5)*2}|Ink:??|) \n");
                                         }else{
-                                            Console.Write($"Basic, Level:{cannonLevel[index]}     (Upgrade(Magic:??|Ink:??|) \n");
+                                            Console.Write($"Basic, Level:{cannonLevel[index]}     (Upgrade(Magic:{(Math.Pow(cannonLevel[index],2)*5)*2}|Ink:??|) \n");
                                         } 
                                     }
                                     if(curentCannonType[index] == cannonTypes.Magic){
@@ -501,15 +398,16 @@ internal class Program
                         try{
                             Console.Write($"Which cannon do you want to change? \n 0:finish \n");
                             int selectNumber = 1;
-                            int increment = 0;
+                            index = 0;
+                            //If there is a cannon show it in color, otherwise gray it out 
                             foreach(bool entry in hasCannon){
-                                if(entry == true){
-                                    changeColor($" {selectNumber}:{cannonLookup[increment]} \n",ConsoleColor.White);
+                                if(entry == true && curentCannonType[index] != cannonTypes.Auto){
+                                    changeColor($" {selectNumber}:{cannonLookup[index],5}     ({curentCannonType[index]})\n",ConsoleColor.White);
                                 }else{
-                                    changeColor($" {selectNumber}:{cannonLookup[increment]} \n",ConsoleColor.DarkGray);
+                                    changeColor($" {selectNumber}:{cannonLookup[index],5}      ({curentCannonType[index]})\n",ConsoleColor.DarkGray);
                                 }
                                 selectNumber++;
-                                increment++;
+                                index++;
                             }
                             playerChoise = Convert.ToInt32(Console.ReadLine());
                             cannonLocation wichCannonDoYouWantToChange = cannonLocation.Left;
@@ -534,9 +432,11 @@ internal class Program
                             }
                             if (playerChoise != 0){
                                 Targeting(cannonTarget[playerChoise-1],wichCannonDoYouWantToChange,false,hasCannon[playerChoise-1]);
-                                if(hasCannon[playerChoise-1] == true){
+                                if(hasCannon[playerChoise-1] == true  && (curentCannonType[playerChoise-1] != cannonTypes.Auto)){
                                     (int,int) newCannonTarget = Targeting((0,0),wichCannonDoYouWantToChange,true,true);
                                     cannonTarget[playerChoise-1] = newCannonTarget;
+                                }else{
+                                    Console.Write("You cannont change the target of this cannon");
                                 }
                             }else{
                                 break;
@@ -560,7 +460,7 @@ internal class Program
                         Console.Write($"{cannonLookup[index]} cannon's round ");
                         index2 = 0;
                         foreach((int,int)thing in enemyPlacement){
-                            if (enemyPlacement[index2] == entry)
+                            if (enemyPlacement[index2] == cannonTarget[index])
                             {
                                 Console.Write("was a ");
                                 changeColor("Direct Hit",ConsoleColor.Magenta);
@@ -569,7 +469,7 @@ internal class Program
                                 enemyHp[index2] = enemyHp[index2] - cannonDamage[index];
                             }
 
-                            if (enemyPlacement[index2].Item1 > entry.Item1)
+                            if (enemyPlacement[index2].Item1 > cannonTarget[index].Item1)
                             {
                                 changeColor("fell to the left",ConsoleColor.DarkYellow);
                                 //Console.Write(" of ");
@@ -578,7 +478,7 @@ internal class Program
                                 shotRelitiveToEnemy[0] = true;
                             }
 
-                            if (enemyPlacement[index2].Item1 < entry.Item1)
+                            if (enemyPlacement[index2].Item1 < cannonTarget[index].Item1)
                             {
                                 changeColor("fell to the right",ConsoleColor.DarkYellow);
                                 //Console.Write(" of ");
@@ -587,7 +487,7 @@ internal class Program
                                 shotRelitiveToEnemy[1] = true;
                             }
                             Console.Write(" and ");
-                            if (enemyPlacement[index2].Item2 > entry.Item2)
+                            if (enemyPlacement[index2].Item2 > cannonTarget[index].Item2)
                             {
                                 changeColor("fell short", ConsoleColor.DarkYellow);
                                 Console.Write(" of ");
@@ -596,7 +496,7 @@ internal class Program
                                 shotRelitiveToEnemy[2] = true;
                             }
                             
-                            if (enemyPlacement[index2].Item2 < entry.Item2)
+                            if (enemyPlacement[index2].Item2 < cannonTarget[index].Item2)
                             {
                                 changeColor("overshot", ConsoleColor.DarkYellow);
                                 changeColor(" The Manticore", ConsoleColor.DarkRed);
@@ -641,6 +541,7 @@ internal class Program
                                     changeColor("\n  M\n",ConsoleColor.Red);
                                 }
                             }
+                            index2++;
                         }
                     }
                     index++;
@@ -650,81 +551,106 @@ internal class Program
 
 
                 cannonTurn++;
-                // The Manticore strikes back
-                if (manHP > 0)
-                {
-                    int hit = random.Next(1,6);
-                    int cHit = random.Next(0,3);
-                    if (cityPartsHp[0] != 0)
+                // The Enimys strike back
+                index = 0;
+                foreach (int thing in enemyHp){
+                    if (enemyHp[index] > 0)
                     {
-                        switch(hit){
-                            case 1:
-                            cityPartsHp[0]--;
-                            break;
-                            case 2:
-                            cityPartsHp[0]--;
-                            break;
-                            case 3:
-                            cityPartsHp[0]--;
-                            break;
-                            case 4:
-                            cityPartsHp[1]--;
-                            break;
-                            case 5:
-                            cannonHP[cHit]--;
-                            break;
+                        //determin which part it hits
+                        int hit = random.Next(1,6);
+                        //Which cannon is hit when cannons are hit
+                        int cHit = random.Next(0,4);
+                        if (cannonHP[0] == 0){
+                            cHit = random.Next(0,4);
                         }
-                    }
-                    else if(cityPartsHp[1] != 0)
-                    {
-                        switch(hit){
-                            case 1:
-                            cityPartsHp[1]--;
-                            break;
-                            case 2:
-                            cityPartsHp[1]--;
-                            break;
-                            case 3:
-                            cityPartsHp[2]--;
-                            break;
-                            case 4:
-                            cannonHP[cHit]--;
-                            break;
-                            case 5:
-                            cannonHP[cHit]--;
-                            break;
+                        if (cannonHP[1] == 0){
+                            cHit = random.Next(0,4);
                         }
-                    }
-                    else
-                    {
-                        switch(hit){
-                            case 1:
-                            cityPartsHp[2]--;
-                            break;
-                            case 2:
-                            cityPartsHp[2]--;
-                            break;
-                            case 3:
-                            cannonHP[cHit]--;
-                            break;
-                            case 4:
-                            cannonHP[cHit]--;
-                            break;
-                            case 5:
-                            cannonHP[cHit]--;
-                            break;
+                        if (cannonHP[2] == 0){
+                            cHit = random.Next(0,4);
                         }
-                    }
-                    cityHP = 0;
-                    foreach (int part in cityPartsHp){
-                        cityHP = part + cityHP;
-                    }
+                        if (cannonHP[3] == 0){
+                            cHit = random.Next(0,4);
+                        }
+                        
+                        if (cityPartsHp[0] != 0)
+                        {
+                            switch(hit){
+                                case 1:
+                                cityPartsHp[0]--;
+                                break;
+                                case 2:
+                                cityPartsHp[0]--;
+                                break;
+                                case 3:
+                                cityPartsHp[0]--;
+                                break;
+                                case 4:
+                                cityPartsHp[1]--;
+                                break;
+                                case 5:
+                                cannonHP[cHit]--;
+                                break;
+                            }
+                        }
+                        else if(cityPartsHp[1] != 0)
+                        {
+                            switch(hit){
+                                case 1:
+                                cityPartsHp[1]--;
+                                break;
+                                case 2:
+                                cityPartsHp[1]--;
+                                break;
+                                case 3:
+                                cityPartsHp[2]--;
+                                break;
+                                case 4:
+                                cannonHP[cHit]--;
+                                break;
+                                case 5:
+                                cannonHP[cHit]--;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            switch(hit){
+                                case 1:
+                                cityPartsHp[2]--;
+                                break;
+                                case 2:
+                                cityPartsHp[2]--;
+                                break;
+                                case 3:
+                                cannonHP[cHit]--;
+                                break;
+                                case 4:
+                                cannonHP[cHit]--;
+                                break;
+                                case 5:
+                                cannonHP[cHit]--;
+                                break;
+                            }
+                        }
+                        cityHP = 0;
+                        foreach (int part in cityPartsHp){
+                            cityHP = part + cityHP;
+                        }
 
+                    }
+                }
+                index = 0;
+                enemyStillAlive = false;
+                foreach(int thing in enemyHp){
+                    if(enemyHp[index] > 0){
+                        enemyStillAlive = true;
+                    }
+                    index++;
                 }
             }
-
-
-            if (manHP <= 0 && cityHP <= 0)
+            
+            if (enemyStillAlive == false && cityPartsHp[2] <= 0)
             {
                 Console.Write("The wall of ");
                 changeColor("Consolas ",ConsoleColor.DarkBlue);
@@ -732,7 +658,7 @@ internal class Program
                 changeColor("The Manticore",ConsoleColor.DarkRed);
                 Console.Write(".");
             }
-            else if (manHP <= 0)
+            else if (enemyStillAlive == false)
             {
                 changeColor("Congradulations!",ConsoleColor.Green);
                 Console.Write(" You destroyed ");
@@ -741,7 +667,7 @@ internal class Program
                 changeColor("Consolas ",ConsoleColor.DarkBlue);
                 Console.Write("is saved");
             }
-            else if (cityHP <= 0)
+            else if (cityPartsHp[2] <= 0)
             {
                 changeColor("Oh No!",ConsoleColor.Red);
                 changeColor("The Manticore",ConsoleColor.DarkRed);
