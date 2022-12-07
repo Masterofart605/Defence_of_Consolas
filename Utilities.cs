@@ -25,14 +25,14 @@ namespace cannon
                     //Fire Charge
                     if (element == MagicCannonElement.Fire)
                     {
-                        changeColor("Fire",ConsoleColor.Red);
+                        ChangeColor("Fire", ConsoleColor.Red);
                         Console.Write($" Charge. \n");
                         return 3;
                         //Ice charge
                     }
                     else if (element == MagicCannonElement.Ice)
                     {
-                        changeColor("Frost",ConsoleColor.Cyan);
+                        ChangeColor("Frost", ConsoleColor.Cyan);
                         Console.Write($" Charge. \n");
                         return 3;
                     }
@@ -51,17 +51,17 @@ namespace cannon
                     //Double Charge Fire
                     if (element == MagicCannonElement.Fire)
                     {
-                        changeColor("Flash",ConsoleColor.Yellow);
+                        ChangeColor("Flash", ConsoleColor.Yellow);
                         Console.Write("-");
-                        changeColor("Burn",ConsoleColor.Red);
+                        ChangeColor("Burn", ConsoleColor.Red);
                         Console.Write($" charge. \n");
                     }
                     else
                     {
                         //Double Charge Ice
-                        changeColor("Flash",ConsoleColor.Yellow);
+                        ChangeColor("Flash", ConsoleColor.Yellow);
                         Console.Write("-");
-                        changeColor("Freeze",ConsoleColor.Cyan);
+                        ChangeColor("Freeze", ConsoleColor.Cyan);
                         Console.Write($" charge. \n");
                     }
                     return 15;
@@ -69,7 +69,7 @@ namespace cannon
                 }
                 else if (cannonTurn % 5 == 0)
                 {
-                    changeColor("Thunder",ConsoleColor.Yellow);
+                    ChangeColor("Thunder", ConsoleColor.Yellow);
                     Console.Write($" Charge. \n");
                     return 5;
                     //Fire/Ice charge
@@ -79,14 +79,14 @@ namespace cannon
                     //Fire charge
                     if (element == MagicCannonElement.Fire)
                     {
-                        changeColor("Fire",ConsoleColor.Red);
+                        ChangeColor("Fire", ConsoleColor.Red);
                         Console.Write($" Charge. \n");
                         return 3;
                         //Ice charge
                     }
                     else
                     {
-                        changeColor("Frost",ConsoleColor.Cyan);
+                        ChangeColor("Frost", ConsoleColor.Cyan);
                         Console.Write($" Charge. \n");
                         return 3;
                     }
@@ -114,22 +114,22 @@ namespace cannon
                             if (element == MagicCannonElement.Fire)
                             {
                                 //Hyrdo, Thunder, Fire
-                                changeColor("Fire ",ConsoleColor.Red);
-                                changeColor("Storm",ConsoleColor.Magenta);
+                                ChangeColor("Fire ", ConsoleColor.Red);
+                                ChangeColor("Storm", ConsoleColor.Magenta);
                                 Console.Write($" charge. \n");
                                 return 150;
                             }
                             if (element == MagicCannonElement.Ice)
                             {
                                 //Hyrdo, Thunder, Ice
-                                changeColor("Snow",ConsoleColor.Cyan);
-                                changeColor(" Storm",ConsoleColor.Magenta);
+                                ChangeColor("Snow", ConsoleColor.Cyan);
+                                ChangeColor(" Storm", ConsoleColor.Magenta);
                                 Console.Write($" charge. \n");
                                 return 150;
                             }
                         }
                         //Thunder Hydro
-                        changeColor("Storm",ConsoleColor.Magenta);
+                        ChangeColor("Storm", ConsoleColor.Magenta);
                         Console.Write($" charge. \n");
                         return 50;
                     }
@@ -139,20 +139,20 @@ namespace cannon
                         //Thunder Fire Charge
                         if (element == MagicCannonElement.Fire)
                         {
-                            changeColor("Steam",ConsoleColor.DarkRed);
+                            ChangeColor("Steam", ConsoleColor.DarkRed);
                             Console.Write($" charge. \n");
                             return 30;
                         }
                         //Thunder Ice Charge
                         if (element == MagicCannonElement.Ice)
                         {
-                            changeColor("Glacier",ConsoleColor.DarkCyan);
+                            ChangeColor("Glacier", ConsoleColor.DarkCyan);
                             Console.Write($" charge. \n");
                             return 30;
                         }
                     }
                     //Hydro charge
-                    changeColor("Hydro",ConsoleColor.Blue);
+                    ChangeColor("Hydro", ConsoleColor.Blue);
                     Console.Write($" Charge. \n");
                     return 10;
                 }
@@ -164,23 +164,23 @@ namespace cannon
                         //Double Fire charge
                         if (element == MagicCannonElement.Fire)
                         {
-                            changeColor("Flash",ConsoleColor.Yellow);
+                            ChangeColor("Flash", ConsoleColor.Yellow);
                             Console.Write("-");
-                            changeColor("Burn",ConsoleColor.Red);
+                            ChangeColor("Burn", ConsoleColor.Red);
                             Console.Write($" charge. \n");
                         }
                         if (element == MagicCannonElement.Ice)
                         {
                             //Double Charge Ice
-                            changeColor("Flash",ConsoleColor.Yellow);
+                            ChangeColor("Flash", ConsoleColor.Yellow);
                             Console.Write("-");
-                            changeColor("Freeze",ConsoleColor.White);
+                            ChangeColor("Freeze", ConsoleColor.White);
                             Console.Write($" charge. \n");
                         }
                         return 15;
                     }
                     //Thunder Charge
-                    changeColor("Thunder",ConsoleColor.Yellow);
+                    ChangeColor("Thunder", ConsoleColor.Yellow);
                     Console.Write($" Charge. \n");
                     return 5;
                 }
@@ -190,14 +190,14 @@ namespace cannon
                     //Fire Charge
                     if (element == MagicCannonElement.Fire)
                     {
-                        changeColor("Fire",ConsoleColor.Red);
+                        ChangeColor("Fire", ConsoleColor.Red);
                         Console.Write($" Charge. \n");
                         return 3;
                         //Ice charge
                     }
                     else if (element == MagicCannonElement.Ice)
                     {
-                        changeColor("Frost",ConsoleColor.Cyan);
+                        ChangeColor("Frost", ConsoleColor.Cyan);
                         Console.Write($" Charge. \n");
                         return 3;
                     }
@@ -218,33 +218,33 @@ namespace cannon
                         {
                             if (cannonTurn % 3 == 0)
                             {
-                                changeColor("F",ConsoleColor.Blue);
-                                changeColor("i",ConsoleColor.Cyan);
-                                changeColor("n",ConsoleColor.Green);
-                                changeColor("a",ConsoleColor.Yellow);
-                                changeColor("l",ConsoleColor.Red);
-                                changeColor("i",ConsoleColor.Magenta);
-                                changeColor("t",ConsoleColor.Blue);
-                                changeColor("y",ConsoleColor.Cyan);
-                                changeColor(" B",ConsoleColor.Green);
-                                changeColor("l",ConsoleColor.Yellow);
-                                changeColor("a",ConsoleColor.Red);
-                                changeColor("s",ConsoleColor.Magenta);
-                                changeColor("t",ConsoleColor.Blue);
+                                ChangeColor("F", ConsoleColor.Blue);
+                                ChangeColor("i", ConsoleColor.Cyan);
+                                ChangeColor("n", ConsoleColor.Green);
+                                ChangeColor("a", ConsoleColor.Yellow);
+                                ChangeColor("l", ConsoleColor.Red);
+                                ChangeColor("i", ConsoleColor.Magenta);
+                                ChangeColor("t", ConsoleColor.Blue);
+                                ChangeColor("y", ConsoleColor.Cyan);
+                                ChangeColor(" B", ConsoleColor.Green);
+                                ChangeColor("l", ConsoleColor.Yellow);
+                                ChangeColor("a", ConsoleColor.Red);
+                                ChangeColor("s", ConsoleColor.Magenta);
+                                ChangeColor("t", ConsoleColor.Blue);
                                 Console.Write(". \n");
                                 return 10000;
                             }
                             if (element == MagicCannonElement.Ice)
                             {
-                                changeColor("Fire",ConsoleColor.Red);
-                                changeColor(" Storm",ConsoleColor.Yellow);
+                                ChangeColor("Fire", ConsoleColor.Red);
+                                ChangeColor(" Storm", ConsoleColor.Yellow);
                                 Console.Write($" + charge. \n");
                                 return 750;
                             }
                             if (element == MagicCannonElement.Fire)
                             {
-                                changeColor("Snow",ConsoleColor.Cyan);
-                                changeColor(" Storm",ConsoleColor.Yellow);
+                                ChangeColor("Snow", ConsoleColor.Cyan);
+                                ChangeColor(" Storm", ConsoleColor.Yellow);
                                 Console.Write($" + charge. \n");
                                 return 750;
                             }
@@ -252,21 +252,21 @@ namespace cannon
                         //Triple element Storm (Crio, Hydro, fire)
                         if (cannonTurn % 3 == 0)
                         {
-                            changeColor("Tripple Element",ConsoleColor.Magenta);
-                            changeColor("Storm",ConsoleColor.Yellow);
+                            ChangeColor("Tripple Element", ConsoleColor.Magenta);
+                            ChangeColor("Storm", ConsoleColor.Yellow);
                             Console.Write($" charge. \n");
                             return 450;
                         }
                         //Crio-Hydro
                         if (element == MagicCannonElement.Fire)
                         {
-                            changeColor("Glacier",ConsoleColor.DarkCyan);
+                            ChangeColor("Glacier", ConsoleColor.DarkCyan);
                             Console.Write($" + charge. \n");
                         }
                         //Blaze-Hydro
                         if (element == MagicCannonElement.Ice)
                         {
-                            changeColor("Steam",ConsoleColor.DarkRed);
+                            ChangeColor("Steam", ConsoleColor.DarkRed);
                             Console.Write($" + charge. \n");
                         }
                         return 100;
@@ -277,25 +277,25 @@ namespace cannon
                         //tripple element shock (Crio, Thunder, fire)
                         if (cannonTurn % 3 == 0)
                         {
-                            changeColor("Tripple Element ",ConsoleColor.Magenta);
-                            changeColor("Shock",ConsoleColor.Yellow);
+                            ChangeColor("Tripple Element ", ConsoleColor.Magenta);
+                            ChangeColor("Shock", ConsoleColor.Yellow);
                             Console.Write($" charge. \n");
                             return 225;
                         }
                         //Blaze thunder
                         if (element == MagicCannonElement.Ice)
                         {
-                            changeColor("Flash",ConsoleColor.Yellow);
+                            ChangeColor("Flash", ConsoleColor.Yellow);
                             Console.Write("-");
-                            changeColor("Burn",ConsoleColor.Red);
+                            ChangeColor("Burn", ConsoleColor.Red);
                             Console.Write($" + charge. \n");
                         }
                         //crio thunder
                         if (element == MagicCannonElement.Fire)
                         {
-                            changeColor("Flash",ConsoleColor.Yellow);
+                            ChangeColor("Flash", ConsoleColor.Yellow);
                             Console.Write("-");
-                            changeColor("Freeze",ConsoleColor.Cyan);
+                            ChangeColor("Freeze", ConsoleColor.Cyan);
                             Console.Write(" +");
                             Console.Write($" charge. \n");
                         }
@@ -304,9 +304,9 @@ namespace cannon
                     //Crio/Blase and Fire/Water
                     if (cannonTurn % 3 == 0)
                     {
-                        changeColor("Frost",ConsoleColor.Cyan);
+                        ChangeColor("Frost", ConsoleColor.Cyan);
                         Console.Write("-");
-                        changeColor("Burn",ConsoleColor.Red);
+                        ChangeColor("Burn", ConsoleColor.Red);
                         Console.Write($" Charge. \n");
                         return 30;
                     }
@@ -314,14 +314,14 @@ namespace cannon
                     //Crio Charge
                     if (element == MagicCannonElement.Fire)
                     {
-                        changeColor("Criogenic",ConsoleColor.DarkCyan);
+                        ChangeColor("Criogenic", ConsoleColor.DarkCyan);
                         Console.Write($" charge. \n");
                         return 15;
                     }
                     //Blaze Charge
                     if (element == MagicCannonElement.Ice)
                     {
-                        changeColor("Blaze",ConsoleColor.DarkRed);
+                        ChangeColor("Blaze", ConsoleColor.DarkRed);
                         Console.Write($" charge. \n");
                         return 15;
                     }
@@ -339,22 +339,22 @@ namespace cannon
                             if (element == MagicCannonElement.Fire)
                             {
                                 //Hyrdo, Thunder, Fire
-                                changeColor("Fire ",ConsoleColor.Red);
-                                changeColor("Storm",ConsoleColor.Magenta);
+                                ChangeColor("Fire ", ConsoleColor.Red);
+                                ChangeColor("Storm", ConsoleColor.Magenta);
                                 Console.Write($" charge. \n");
                                 return 150;
                             }
                             if (element == MagicCannonElement.Ice)
                             {
                                 //Hyrdo, Thunder, Ice
-                                changeColor("Snow ",ConsoleColor.Cyan);
-                                changeColor("Storm",ConsoleColor.Magenta);
+                                ChangeColor("Snow ", ConsoleColor.Cyan);
+                                ChangeColor("Storm", ConsoleColor.Magenta);
                                 Console.Write($" charge. \n");
                                 return 150;
                             }
                         }
                         //Thunder Hydro
-                        changeColor("Storm",ConsoleColor.Magenta);
+                        ChangeColor("Storm", ConsoleColor.Magenta);
                         Console.Write($" charge. \n");
                         return 50;
                     }
@@ -364,20 +364,20 @@ namespace cannon
                         //Thunder Fire Charge
                         if (element == MagicCannonElement.Fire)
                         {
-                            changeColor("Steam",ConsoleColor.DarkRed);
+                            ChangeColor("Steam", ConsoleColor.DarkRed);
                             Console.Write($" charge. \n");
                             return 30;
                         }
                         //Thunder Ice Charge
                         if (element == MagicCannonElement.Ice)
                         {
-                            changeColor("Glacier",ConsoleColor.DarkCyan);
+                            ChangeColor("Glacier", ConsoleColor.DarkCyan);
                             Console.Write($" charge. \n");
                             return 30;
                         }
                     }
                     //Hydro charge
-                    changeColor("Hydro",ConsoleColor.Blue);
+                    ChangeColor("Hydro", ConsoleColor.Blue);
                     Console.Write($" Charge. \n");
                     return 10;
                 }
@@ -389,23 +389,23 @@ namespace cannon
                         //Double Fire charge
                         if (element == MagicCannonElement.Fire)
                         {
-                            changeColor("Flash",ConsoleColor.Yellow);
+                            ChangeColor("Flash", ConsoleColor.Yellow);
                             Console.Write("-");
-                            changeColor("Burn",ConsoleColor.Red);
+                            ChangeColor("Burn", ConsoleColor.Red);
                             Console.Write($" charge. \n");
                         }
                         if (element == MagicCannonElement.Ice)
                         {
                             //Double Charge Ice
-                            changeColor("Flash",ConsoleColor.Yellow);
+                            ChangeColor("Flash", ConsoleColor.Yellow);
                             Console.Write("-");
-                            changeColor("Freeze",ConsoleColor.Cyan);
+                            ChangeColor("Freeze", ConsoleColor.Cyan);
                             Console.Write($" Charge. \n");
                         }
                         return 15;
                     }
                     //Thunder Charge
-                    changeColor("Thunnder",ConsoleColor.Yellow);
+                    ChangeColor("Thunnder", ConsoleColor.Yellow);
                     Console.Write($" Charge. \n");
                     return 5;
                 }
@@ -415,14 +415,14 @@ namespace cannon
                     //Fire Charge
                     if (element == MagicCannonElement.Fire)
                     {
-                        changeColor("Fire",ConsoleColor.Red);
+                        ChangeColor("Fire", ConsoleColor.Red);
                         Console.Write($" Charge. \n");
                         return 3;
                         //Ice charge
                     }
                     else if (element == MagicCannonElement.Ice)
                     {
-                        changeColor("Frost",ConsoleColor.Cyan);
+                        ChangeColor("Frost", ConsoleColor.Cyan);
                         Console.Write($" Charge. \n");
                         return 3;
                     }
@@ -433,217 +433,307 @@ namespace cannon
             }
             return 0;
         }
-        
-        public static int BasicCannon(int level, cannonLocation location){
+
+        public static int BasicCannon(int level, cannonLocation location)
+        {
             Console.Write($"The Basic Cannon at {location} Station is ready to fire. \n");
-            if (level == 1){
+            if (level == 1)
+            {
                 return 1;
             }
-            if (level == 2){
+            if (level == 2)
+            {
                 return 5;
             }
-            if (level >= 3){
+            if (level >= 3)
+            {
                 return 15;
             }
             return 0;
         }
-        public static (int,(int,int)) AutoCannon(int level, List<(int,int)> enemyLocation, (int,int) cannonTarget, cannonLocation location){
+        public static (int, (int, int)) AutoCannon(int level, List<(int, int)> enemyLocation, (int, int) cannonTarget, cannonLocation location)
+        {
             Random random = new Random();
             int lenght = 0;
-            bool hastarget = false; 
-            foreach((int,int)thing in enemyLocation){
-                if(thing == cannonTarget){
+            bool hastarget = false;
+            foreach ((int, int) thing in enemyLocation)
+            {
+                if (thing == cannonTarget)
+                {
                     hastarget = true;
                 }
                 lenght++;
             }
-            (int,int) target = (-50,-50);
-            if(hastarget == false){
-                int ship1 = random.Next(0, lenght-1);
+            (int, int) target = (-50, -50);
+            if (hastarget == false)
+            {
+                int ship1 = random.Next(0, lenght - 1);
                 target = enemyLocation[ship1];
-            }else{
+            }
+            else
+            {
                 target = cannonTarget;
             }
-            
+
             Console.Write($"The Auto Cannon at {location} Startion is ready to fire at:{target} \n");
             int damage = 0;
-            if(level == 1){
+            if (level == 1)
+            {
                 damage = 1;
-            }else if(level == 2){
+            }
+            else if (level == 2)
+            {
                 damage = 2;
-            }else if(level == 3){
+            }
+            else if (level == 3)
+            {
                 damage = 3;
-            }else if(level == 4){
+            }
+            else if (level == 4)
+            {
                 damage = 5;
-            }else if(level == 5){
+            }
+            else if (level == 5)
+            {
                 damage = 15;
             }
-            return (damage,target);
+            return (damage, target);
         }
-        public static int inkCannon(int level, (int, int) target, List<(int,int)> enemyLocation){
+        public static int InkCannon(int level, (int, int) target, List<(int, int)> enemyLocation)
+        {
             int counter = 0;
-            foreach((int,int) thing in enemyLocation){
-                if (target == enemyLocation[counter]){
+            foreach ((int, int) thing in enemyLocation)
+            {
+                if (target == enemyLocation[counter])
+                {
                     Console.Write($"An enemy was spotted at {enemyLocation[counter]}");
                 }
                 counter++;
             }
-            if (level == 1){
+            if (level == 1)
+            {
                 return 3;
             }
             return 0;
         }
-        public enum MagicCannonElement {Fire, Ice, Criogenic, Blaze}
-        public enum cannonLocation {Left, Center, Right, Upper, Super}
-        public enum cannonTypes {Basic, Magic, Auto, Ink, Super}
+        public enum MagicCannonElement { Fire, Ice, Criogenic, Blaze }
+        public enum cannonLocation { Left, Center, Right, Upper, Super }
+        public enum cannonTypes { Basic, Magic, Auto, Ink, Super }
     }
-    public class Text{
-        static public void changeColor(string text, ConsoleColor color){
+    public class Text
+    {
+        static public void ChangeColor(string text, ConsoleColor color)
+        {
             Console.ForegroundColor = color;
             Console.Write(text);
             Console.ForegroundColor = ConsoleColor.White;
         }
-     }
-    public class Other{
-        public static (int,int) Targeting((int,int) target, cannonLocation id, bool changeTarget, bool hasCannon){
-            (int,int) newTarget;
-            if (hasCannon == false){
+    }
+    public class Other
+    {
+        public static (int, int) Targeting((int, int) target, cannonLocation id, bool changeTarget, bool hasCannon)
+        {
+            (int, int) newTarget;
+            if (hasCannon == false)
+            {
                 //If the Player does not have this cannon yet just end
                 Console.Write("You do not have this cannon yet \n");
-                return (0,0);
+                return (0, 0);
             }
-            if (changeTarget ==  false){
-                if (target.Item1 <= -51 && target.Item2 <= -51){
+            if (changeTarget == false)
+            {
+                if (target.Item1 <= -51 && target.Item2 <= -51)
+                {
                     Console.Write($"The cannon at the {id} station has no target \n");
-                }else{
+                }
+                else
+                {
                     Console.Write($"The cannon at the {id} station is targeting {target}");
                 }
             }
 
-            if (changeTarget == true){
-                while(true){
-                    try{
+            if (changeTarget == true)
+            {
+                while (true)
+                {
+                    try
+                    {
                         Console.Write("What is the X cordanate you want to target?\n");
                         newTarget.Item1 = Convert.ToInt32(Console.ReadLine());
                         Console.Write("What is the Y cordanate you want to target?\n");
                         newTarget.Item2 = Convert.ToInt32(Console.ReadLine());
                         Console.Write($"You are Now Targeting {newTarget}\n");
-                        if(newTarget.Item1 > 50){
+                        if (newTarget.Item1 > 50)
+                        {
                             Console.Write("Your X is too big, please try again\n");
-                        }else if (newTarget.Item1 < -50){
+                        }
+                        else if (newTarget.Item1 < -50)
+                        {
                             Console.Write("Your X is too Small, please try again\n");
-                        }else if(newTarget.Item2 > 50){
+                        }
+                        else if (newTarget.Item2 > 50)
+                        {
                             Console.Write("Your Y is too big, please try again\n");
-                        }else if (newTarget.Item2 < -50){
+                        }
+                        else if (newTarget.Item2 < -50)
+                        {
                             Console.Write("Your Y is too Small, please try again\n");
-                        } else{
+                        }
+                        else
+                        {
                             return newTarget;
                         }
-                    }catch (FormatException){
+                    }
+                    catch (FormatException)
+                    {
                         Console.Write("Please input a number \n");
                     }
                 }
             }
 
 
-            return (0,0);
+            return (0, 0);
         }
-     }
-    
-    public class Settings{
-        public static void advancedCityHP(int[] cityPartsHp, int [] cannonHP){
-            changeColor("\nConsolas ",ConsoleColor.DarkBlue);
-                    changeColor("Main Wall: ",ConsoleColor.White);
-                    //Main Wall
-                    if(cityPartsHp[0] < 3){
-                        changeColor($"{cityPartsHp[0]}",ConsoleColor.Red);
-                    }else if(cityPartsHp[0] <= 5){
-                        changeColor($"{cityPartsHp[0]}",ConsoleColor.Yellow);
-                    }if(cityPartsHp[0] > 5){
-                        changeColor($"{cityPartsHp[0]}",ConsoleColor.Green);
-                    }
-                    //Secondary wall
-                    changeColor("/10 ",ConsoleColor.White);
-                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
-                    changeColor("Secondary Wall: ",ConsoleColor.White);
-                    if(cityPartsHp[1] < 3){
-                        changeColor($"{cityPartsHp[1]}",ConsoleColor.Red);
-                    }else if(cityPartsHp[1] <= 5){
-                        changeColor($"{cityPartsHp[1]}",ConsoleColor.Yellow);
-                    }if(cityPartsHp[1] > 5){
-                        changeColor($"{cityPartsHp[1]}",ConsoleColor.Green);
-                    }
-                    //City Center
-                    changeColor("/10 ",ConsoleColor.White);
-                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
-                    changeColor("City Center: ",ConsoleColor.White);
-                    if(cityPartsHp[2] < 2){
-                        changeColor($"{cityPartsHp[2]}",ConsoleColor.Red);
-                    }else if(cityPartsHp[2] <= 3){
-                        changeColor($"{cityPartsHp[2]}",ConsoleColor.Yellow);
-                    }if(cityPartsHp[2] > 3){
-                        changeColor($"{cityPartsHp[2]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 ",ConsoleColor.White);
-                    //City Hp
-                    changeColor("\nConsolas ",ConsoleColor.DarkBlue);
-                    changeColor("Total Hp: ",ConsoleColor.White);
-                    int totalHp = 0;
-                    foreach(int thing in cityPartsHp){
-                        totalHp = totalHp + thing;
-                    }
-                    if(totalHp > 15){
-                        changeColor($"{totalHp}",ConsoleColor.Green);
-                    }else if(totalHp > 5){
-                        changeColor($"{totalHp}",ConsoleColor.Yellow);
-                    }else{
-                        changeColor($"{totalHp}",ConsoleColor.Red);
-                    }
-                    changeColor("/25",ConsoleColor.White);
+    }
 
-                    //Upper cannon tower
-                    changeColor("\n  Upper Cannon Tower: ",ConsoleColor.White);
-                    if(cannonHP[3] < 2){
-                        changeColor($"{cannonHP[3]}",ConsoleColor.Red);
-                    }else if(cannonHP[3] <= 3){
-                        changeColor($"{cannonHP[3]}",ConsoleColor.Yellow);
-                    }if(cannonHP[3] > 3){
-                        changeColor($"{cannonHP[3]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 ",ConsoleColor.White);
-                    //Right cannon tower
-                    changeColor("\n  Right Cannon Tower: ",ConsoleColor.White);
-                    if(cannonHP[2] < 2){
-                        changeColor($"{cannonHP[2]}",ConsoleColor.Red);
-                    }else if(cannonHP[2] <= 3){
-                        changeColor($"{cannonHP[2]}",ConsoleColor.Yellow);
-                    }if(cannonHP[2] > 3){
-                        changeColor($"{cannonHP[2]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 ",ConsoleColor.White);
-                    //Center cannon tower
-                    changeColor("\n  Center Cannon Tower: ",ConsoleColor.White);
-                    if(cannonHP[1] < 2){
-                        changeColor($"{cannonHP[1]}",ConsoleColor.Red);
-                    }else if(cannonHP[1] <= 3){
-                        changeColor($"{cannonHP[1]}",ConsoleColor.Yellow);
-                    }if(cannonHP[1] > 3){
-                        changeColor($"{cannonHP[1]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 ",ConsoleColor.White);
-                    //left cannon tower
-                    changeColor("\n  Left Cannon Tower: ",ConsoleColor.White);
-                    if(cannonHP[0] < 2){
-                        changeColor($"{cannonHP[0]}",ConsoleColor.Red);
-                    }else if(cannonHP[0] <= 3){
-                        changeColor($"{cannonHP[0]}",ConsoleColor.Yellow);
-                    }if(cannonHP[0] > 3){
-                        changeColor($"{cannonHP[0]}",ConsoleColor.Green);
-                    }
-                    changeColor("/5 \n",ConsoleColor.White);
+    public class Settings
+    {
+        public static void AdvancedCityHP(int[] cityPartsHp, int[] cannonHP)
+        {
+            ChangeColor("\nConsolas ", ConsoleColor.DarkBlue);
+            ChangeColor("Main Wall: ", ConsoleColor.White);
+            //Main Wall
+            if (cityPartsHp[0] < 3)
+            {
+                ChangeColor($"{cityPartsHp[0]}", ConsoleColor.Red);
+            }
+            else if (cityPartsHp[0] <= 5)
+            {
+                ChangeColor($"{cityPartsHp[0]}", ConsoleColor.Yellow);
+            }
+            if (cityPartsHp[0] > 5)
+            {
+                ChangeColor($"{cityPartsHp[0]}", ConsoleColor.Green);
+            }
+            //Secondary wall
+            ChangeColor("/10 ", ConsoleColor.White);
+            ChangeColor("\nConsolas ", ConsoleColor.DarkBlue);
+            ChangeColor("Secondary Wall: ", ConsoleColor.White);
+            if (cityPartsHp[1] < 3)
+            {
+                ChangeColor($"{cityPartsHp[1]}", ConsoleColor.Red);
+            }
+            else if (cityPartsHp[1] <= 5)
+            {
+                ChangeColor($"{cityPartsHp[1]}", ConsoleColor.Yellow);
+            }
+            if (cityPartsHp[1] > 5)
+            {
+                ChangeColor($"{cityPartsHp[1]}", ConsoleColor.Green);
+            }
+            //City Center
+            ChangeColor("/10 ", ConsoleColor.White);
+            ChangeColor("\nConsolas ", ConsoleColor.DarkBlue);
+            ChangeColor("City Center: ", ConsoleColor.White);
+            if (cityPartsHp[2] < 2)
+            {
+                ChangeColor($"{cityPartsHp[2]}", ConsoleColor.Red);
+            }
+            else if (cityPartsHp[2] <= 3)
+            {
+                ChangeColor($"{cityPartsHp[2]}", ConsoleColor.Yellow);
+            }
+            if (cityPartsHp[2] > 3)
+            {
+                ChangeColor($"{cityPartsHp[2]}", ConsoleColor.Green);
+            }
+            ChangeColor("/5 ", ConsoleColor.White);
+            //City Hp
+            ChangeColor("\nConsolas ", ConsoleColor.DarkBlue);
+            ChangeColor("Total Hp: ", ConsoleColor.White);
+            int totalHp = 0;
+            foreach (int thing in cityPartsHp)
+            {
+                totalHp = totalHp + thing;
+            }
+            if (totalHp > 15)
+            {
+                ChangeColor($"{totalHp}", ConsoleColor.Green);
+            }
+            else if (totalHp > 5)
+            {
+                ChangeColor($"{totalHp}", ConsoleColor.Yellow);
+            }
+            else
+            {
+                ChangeColor($"{totalHp}", ConsoleColor.Red);
+            }
+            ChangeColor("/25", ConsoleColor.White);
+
+            //Upper cannon tower
+            ChangeColor("\n  Upper Cannon Tower: ", ConsoleColor.White);
+            if (cannonHP[3] < 2)
+            {
+                ChangeColor($"{cannonHP[3]}", ConsoleColor.Red);
+            }
+            else if (cannonHP[3] <= 3)
+            {
+                ChangeColor($"{cannonHP[3]}", ConsoleColor.Yellow);
+            }
+            if (cannonHP[3] > 3)
+            {
+                ChangeColor($"{cannonHP[3]}", ConsoleColor.Green);
+            }
+            ChangeColor("/5 ", ConsoleColor.White);
+            //Right cannon tower
+            ChangeColor("\n  Right Cannon Tower: ", ConsoleColor.White);
+            if (cannonHP[2] < 2)
+            {
+                ChangeColor($"{cannonHP[2]}", ConsoleColor.Red);
+            }
+            else if (cannonHP[2] <= 3)
+            {
+                ChangeColor($"{cannonHP[2]}", ConsoleColor.Yellow);
+            }
+            if (cannonHP[2] > 3)
+            {
+                ChangeColor($"{cannonHP[2]}", ConsoleColor.Green);
+            }
+            ChangeColor("/5 ", ConsoleColor.White);
+            //Center cannon tower
+            ChangeColor("\n  Center Cannon Tower: ", ConsoleColor.White);
+            if (cannonHP[1] < 2)
+            {
+                ChangeColor($"{cannonHP[1]}", ConsoleColor.Red);
+            }
+            else if (cannonHP[1] <= 3)
+            {
+                ChangeColor($"{cannonHP[1]}", ConsoleColor.Yellow);
+            }
+            if (cannonHP[1] > 3)
+            {
+                ChangeColor($"{cannonHP[1]}", ConsoleColor.Green);
+            }
+            ChangeColor("/5 ", ConsoleColor.White);
+            //left cannon tower
+            ChangeColor("\n  Left Cannon Tower: ", ConsoleColor.White);
+            if (cannonHP[0] < 2)
+            {
+                ChangeColor($"{cannonHP[0]}", ConsoleColor.Red);
+            }
+            else if (cannonHP[0] <= 3)
+            {
+                ChangeColor($"{cannonHP[0]}", ConsoleColor.Yellow);
+            }
+            if (cannonHP[0] > 3)
+            {
+                ChangeColor($"{cannonHP[0]}", ConsoleColor.Green);
+            }
+            ChangeColor("/5 \n", ConsoleColor.White);
         }
-        public static void basicCityHp(int cityHP,int manHP){
-            changeColor("Consolas: ",ConsoleColor.DarkBlue);
+        public static void BasicCityHp(int cityHP, int manHP)
+        {
+            ChangeColor("Consolas: ", ConsoleColor.DarkBlue);
             if (cityHP > 15)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -658,13 +748,15 @@ namespace cannon
             }
             Console.Write(cityHP);
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write($"/25 ");   
+            Console.Write($"/25 ");
         }
-        public static void advancedEnimyHp(List<int> enemyHp){
+        public static void AdvancedEnemyHp(List<int> enemyHp)
+        {
             int index = 0;
             Console.Write("\n");
-            foreach(int thing in enemyHp){
-                changeColor($"{enemyHp[index]} \n",ConsoleColor.Red);
+            foreach (int thing in enemyHp)
+            {
+                ChangeColor($"{enemyHp[index]} \n", ConsoleColor.Red);
                 index++;
             }
         }
