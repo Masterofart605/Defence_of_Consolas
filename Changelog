@@ -90,3 +90,11 @@ The game can now end again
 consolidated parts of the code to make it easier to read
 (I did alot of fixes that all resulted in the previouse thing I can't remder all of them. It took up most of the time.)
 this includdes makeing it so cannons can hit the different targets, fixing error where only the hp of the first target would show up and more.
+
+Dec 8, 2022
+
+Temporary goal: Implement changes to improve what the reviewers where complaining about.
+
+Quick tutorial of how to play added.
+Screen refresh every cycle option was added
+the ablility to have rounds implemented

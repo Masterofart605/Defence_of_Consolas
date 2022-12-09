@@ -1,10 +1,10 @@
-using static cannon.Modes;
-using static cannon.Text;
+using static Utilities.Cannons;
+using static Utilities.Text;
 
 
-namespace cannon
+namespace Utilities
 {
-    public class Modes
+    public class Cannons
     {
         public static int MagicCannon(int cannonTurn, int level, MagicCannonElement element, cannonLocation location)
         {
@@ -433,7 +433,6 @@ namespace cannon
             }
             return 0;
         }
-
         public static int BasicCannon(int level, cannonLocation location)
         {
             Console.Write($"The Basic Cannon at {location} Station is ready to fire. \n");
@@ -594,6 +593,32 @@ namespace cannon
 
             return (0, 0);
         }
+        public static List<enemyTypes> GenerateEnemyStep1(int roundNumber){
+            List<enemyTypes> newEnemys = new List<enemyTypes>();
+            string[] fileStep1 = File.ReadAllLines("Enemys Tracker.txt");
+            string[] fileStep2 = fileStep1[roundNumber - 1].Split(" ");
+            try{
+                int catapult  = Convert.ToInt32(fileStep2[0]);
+                int airship   = Convert.ToInt32(fileStep2[1]);
+                int Manticore = Convert.ToInt32(fileStep2[2]);
+            }catch (FormatException){
+                Console.Write("OOPS! We had a problem generating enemys");
+            }catch (Exception){
+                Console.Write("We had a general problem");
+            }
+            
+
+
+            if (newEnemys.Count == 0){
+                newEnemys.Add(enemyTypes.Default);
+            }
+            return newEnemys;
+        }
+        public static (int, int, enemyTypes) GenerateEnemyStep2(){
+
+            return(1,1, enemyTypes.Default);
+        }
+        public enum enemyTypes { Default, Catapult, Airship, The_Manticore}   
     }
 
     public class Settings
@@ -756,7 +781,9 @@ namespace cannon
             Console.Write("\n");
             foreach (int thing in enemyHp)
             {
-                ChangeColor($"{enemyHp[index]} \n", ConsoleColor.Red);
+                Console.Write("Manticore: ");
+                ChangeColor($"{enemyHp[index]}", ConsoleColor.Red);
+                Console.Write("/10 \n");
                 index++;
             }
         }
