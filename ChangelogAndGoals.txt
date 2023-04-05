@@ -98,3 +98,14 @@ Temporary goal: Implement changes to improve what the reviewers where complainin
 Quick tutorial of how to play added.
 Screen refresh every cycle option was added
 the ablility to have rounds implemented
+
+
+April 3, 2023
+
+New Goals:
+1:Fix everything
+2:Make gameplay smoother
+3:Create display
+
+changes
+Created (new) cannon class
