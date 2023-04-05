@@ -1,0 +1,111 @@
+https://github.com/Masterofart605/Defence_of_Consolas
+
+11/15/22
+Implemented haveing multiple cannons able to target seperatly
+made The Manticore spawn on a 100,100 cordanite centerd on zero
+cannons now also targent on that cordanite plain
+added the radar to make findeing The Manticore slightly easier
+Buffed city hp from 15 to 25
+fixed you win screen changeing Concolas to Consolas
+added visual indicators showing which side of The Manticore that them missed on
+Added advanced health veiw settings
+Added placeholder values for advanced hp
+
+11/17/22
+
+Goal1: Make The Advanced HP actually work rather than useing placeholders
+Goal2: When a cannon hits or misses show which cannon it was
+Goal3: Continure to improve cannon interface
+
+The Manticore now fires at a random all part, prioritizeing the outer walls
+All city parts hp now adds together for cityHp
+Changed back wall to secondary wall
+Advanced HP Now shows cannon tower hp
+Fixed Error where secondary wall could go into negatives
+Fixed error where cannons displayed city center hp instead of their own
+Fixed error where cannon hp would stay green as it took damamge
+Cannons can no longer fire when their hp runs out.
+Goal1 complete
+Changed cannon text so that miss to left/right and overshot/fellshort are on the same line
+Changed "Your round" into "{cannon's round}" hit or missed the target
+Goal2 complete
+All active cannons will now show what charge they have
+fixed error where a cannon could target above y = 50
+Now shows when x and y are too big or too small rather than useing a blanket statment
+
+
+11/18/22
+
+Cannons now can be more than just the magic type
+fixed error where all cannons did the damamge of the last cannon
+it is now possible to toggle if you want to see the extra guide for where your shot landed
+
+11/19/22
+
+Fixed error where cannon would claim it was doing no damage.
+Added basic cannon
+Started development of the Auto and Ink cannons
+Ink cannons will show the loaction of hit targets (once enemys are stored in a array)
+
+11/21/22
+
+Enemy data will now be stored in a list
+
+11/29/22
+
+Goals:
+1:Add a basic turn system
+2:Add a basic cannon upgradeing system
+Bugs/Needed fixes
+1:Cannons show when they miss a target useing the list
+2:Cannons only show the nearest enimy (this may be in the long run im not sure how I would do it right now)
+3:Make Specific values for upgrade costs rather than useing functions (to allow better balaceing)
+
+radar will now show where all the enemys are in the list
+added many comments to help with clarity
+fix 1: Cannons will now show when they miss to the sides of all enemys
+cannons can now damage all enemys on a list
+Basic Cannons now say ready to fire to mach better with the magic cannon
+Added the Upgrade menu, (upgrades don't work quite yet)
+
+
+11/30/22 and Dec 1st, 2022
+
+Goals:
+1:Add a basic turn system
+2:Add a basic cannon upgradeing system
+3:City take damage from every enemy
+Bugs/Needed fixes
+1:Cannons only show the nearest enimy (this may be in the long run im not sure how I would do it right now)
+2:Make Specific values for upgrade costs rather than useing functions (to allow better balaceing)
+3:Fix auto cannons targetting a spot even when the target it dead.
+4:Fix cannons going into negative hp
+5:Auto Cannons hit All targets thats not good
+
+Implememted Auto Cannon fuctionality
+Auto Cannon now stays on the target it has rather that switching randomly
+Fix 4 complete: Cannons can no longer go into negavite HP
+Fix 5 is not a problem. I accidantaly had the enemys stacked up
+The game can now end again
+consolidated parts of the code to make it easier to read
+(I did alot of fixes that all resulted in the previouse thing I can't remder all of them. It took up most of the time.)
+this includdes makeing it so cannons can hit the different targets, fixing error where only the hp of the first target would show up and more.
+
+Dec 8, 2022
+
+Temporary goal: Implement changes to improve what the reviewers where complaining about.
+
+Quick tutorial of how to play added.
+Screen refresh every cycle option was added
+the ablility to have rounds implemented
+
+
+April 3, 2023
+
+New Goals:
+1:Fix everything
+2:Make gameplay smoother
+3:Create display
+
+changes
+Created (new) cannon class

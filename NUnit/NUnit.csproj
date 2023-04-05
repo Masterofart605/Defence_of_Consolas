@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\classlib\classlib.csproj" />
-    <ProjectReference Include="..\Defence_of_Consolas.csproj" />
   </ItemGroup>
 
 </Project>

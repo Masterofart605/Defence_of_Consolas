@@ -17,19 +17,19 @@ namespace MyApp
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($"The City is under attack it is time to fight back! \n");
 
-            ChangeColor("IMPORTANT \n ", ConsoleColor.Red);
-            ChangeColor("Currently the upgrades menu does not work, people have been haveing issues getting stuck in it (hopefully I will have that fixed by now) \n",ConsoleColor.Yellow);
-            Console.Write("I also need a little guide of how to run the program \n");
-            Console.Write("So in the first menu you can press 0 to end the round, or 1 to change settings \n");
-            Console.Write("This is where most stuff happens. For the purposes of playing the game you only NEED to pay attention to the first one \n");
-            Console.Write("This is change cannon target, you will press 1 to select it. Currently you only have the right cannon so you will press 3 to select it \n");
-            Console.Write("(if you wish to go bcak press 0) \n");
-            Console.Write("The you will input the place you want to target to try and guess were the enemy is starting with x and then y \n");
-            Console.Write("(Tip: it has to be from -50 to 50) \n");
-            ChangeColor("Then you press 0 to finish since you only have 1 cannon right now \n",ConsoleColor.Yellow);
-            Console.Write("You will then be told on relitive to the enemy what side your shot missed to \n");
-            Console.Write("You will continue this untill the opponent is defeated \n");
-            ChangeColor("The only way to exit the program is to destroy the enemy. In the future when I implement saveing this will be changed \n", ConsoleColor.Yellow);
+            // ChangeColor("IMPORTANT \n ", ConsoleColor.Red);
+            // ChangeColor("Currently the upgrades menu does not work, people have been haveing issues getting stuck in it (hopefully I will have that fixed by now) \n",ConsoleColor.Yellow);
+            // Console.Write("I also need a little guide of how to run the program \n");
+            // Console.Write("So in the first menu you can press 0 to end the round, or 1 to change settings \n");
+            // Console.Write("This is where most stuff happens. For the purposes of playing the game you only NEED to pay attention to the first one \n");
+            // Console.Write("This is change cannon target, you will press 1 to select it. Currently you only have the right cannon so you will press 3 to select it \n");
+            // Console.Write("(if you wish to go bcak press 0) \n");
+            // Console.Write("The you will input the place you want to target to try and guess were the enemy is starting with x and then y \n");
+            // Console.Write("(Tip: it has to be from -50 to 50) \n");
+            // ChangeColor("Then you press 0 to finish since you only have 1 cannon right now \n",ConsoleColor.Yellow);
+            // Console.Write("You will then be told on relitive to the enemy what side your shot missed to \n");
+            // Console.Write("You will continue this untill the opponent is defeated \n");
+            // ChangeColor("The only way to exit the program is to destroy the enemy. In the future when I implement saveing this will be changed \n", ConsoleColor.Yellow);
 
 
 
