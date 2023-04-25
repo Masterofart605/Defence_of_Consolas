@@ -1,28 +1,52 @@
-﻿using static Utilities.Cannons;
-using static Utilities.Text;
-using static Utilities.Other;
-using static Utilities.Settings;
+﻿using static Utilities.Text;
 
 
 
 namespace classlib;
-public class Cannon
-{
-    private cannonLocation place {get;}
-    public int HP {get; set;} = 10;
-    public (int,int) target {get; set;} = (0,0);
-    public Cannon(cannonLocation _place){
-        place = _place;
-    }
-    public void ChangeTarget((int,int) newTarget){
-        target = newTarget;
-    }
-    public int CalculateDamage(){
-        return 0;
+
+public class ScreenDisplay{
+    ConsoleColor ScreenColor = ConsoleColor.White;
+    
+    
+    
+
+
+    public void display(){
+        Console.Clear();
+        string[] displayArray = new string[]
+        {$"+-----------------------------------------------+",
+         $"|                                               |",
+         $"|                                               |",
+         $"|                                               |",
+         $"|                                               |",
+         $"|                                               |",
+         $"|                                               |",
+         $"|                                               |",
+         $"|                                               |",
+         $"|                                               |",
+         $"+-----------------------------------------------+"};
+        int increment = 0;
+        foreach(string thing in displayArray)
+        {
+            Console.WriteLine(displayArray[increment]);
+            increment++;
+        }
     }
 }
 
+public class Player{
+    public (int,int) SpawnLocation = (0,0);
+    public (int,int) CurrentLocation = (0,0);
+    public void MoveLeft()
+    {
+        
+    }
+    public void MoveRight()
+    {
 
-public class BasicCannon:Cannon{
+    }
+    public void Jump()
+    {
 
+    }
 }
