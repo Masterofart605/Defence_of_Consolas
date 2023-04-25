@@ -39,14 +39,27 @@ public class Player{
     public (int,int) CurrentLocation = (0,0);
     public void MoveLeft()
     {
-        
+        if(CheckIfNegativeOutOfBounds() == false){
+        CurrentLocation = (CurrentLocation.Item1-1,CurrentLocation.Item2);
+        }
     }
     public void MoveRight()
     {
-
+        CurrentLocation = (CurrentLocation.Item1+1,CurrentLocation.Item2);  
     }
     public void Jump()
     {
 
     }
+    private bool CheckIfNegativeOutOfBounds(){
+        if (CurrentLocation.Item1 - 1 <= -1){
+            return true;
+        }else if (CurrentLocation.Item2 <= -1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
+
+

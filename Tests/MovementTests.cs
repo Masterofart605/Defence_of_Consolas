@@ -16,7 +16,7 @@ public class Tests
     public void PlayerMovementNoWalls()
     {
         ThePlayer.MoveLeft();
-        Assert.AreEqual((-1,0),ThePlayer.CurrentLocation);
+        Assert.AreEqual((0,0),ThePlayer.CurrentLocation);
         ThePlayer.MoveRight();
         Assert.AreEqual((1,0),ThePlayer.CurrentLocation);
         
