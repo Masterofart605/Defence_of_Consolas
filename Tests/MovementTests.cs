@@ -13,11 +13,15 @@ public class Tests
     }
 
     [Test]
-    public void PlayerMovementNoWalls()
+    public void PlayerMovement()
     {
         ThePlayer.MoveLeft();
         Assert.AreEqual((0,0),ThePlayer.CurrentLocation);
         ThePlayer.MoveRight();
+        Assert.AreEqual((1,0),ThePlayer.CurrentLocation);
+        ThePlayer.MoveRight();
+        Assert.AreEqual((2,0),ThePlayer.CurrentLocation);
+        ThePlayer.MoveLeft();
         Assert.AreEqual((1,0),ThePlayer.CurrentLocation);
         
     }

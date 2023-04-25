@@ -6,8 +6,40 @@ using classlib;
     {
         static void Main(string[] args)
         {
+            Player player = new Player((1,1));
             ScreenDisplay THESCREEN = new ScreenDisplay();
-            THESCREEN.display();
+            ConsoleKey theGottenKey;
+            while(true){
+                THESCREEN.AdvancedDisplay(player);
+                theGottenKey = Console.ReadKey(false).Key;
+                switch(theGottenKey){
+                    case ConsoleKey.A:
+                    player.MoveLeft();
+                    break;
+                    case ConsoleKey.LeftArrow:
+                    player.MoveLeft();
+                    break;
+                    case ConsoleKey.D:
+                    player.MoveRight();
+                    break;
+                    case ConsoleKey.RightArrow:
+                    player.MoveRight();
+                    break;
+                    case ConsoleKey.W:
+                    player.Jump();
+                    break;
+                    case ConsoleKey.UpArrow:
+                    player.Jump();
+                    break;
+                    case ConsoleKey.E:
+                    throw new Exception();
+                    break;
+                    default:
+                    player.Fall();
+                    break;
+                }
+                
+            }
         }
 
 
